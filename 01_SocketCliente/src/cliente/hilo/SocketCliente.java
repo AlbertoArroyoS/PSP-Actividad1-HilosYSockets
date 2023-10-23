@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class SocketCliente {
 	
 	// IP y Puerto a la que nos vamos a conectar
-	public static final int PUERTO = 2018;
+	public static final int PUERTO = 3333;
 	public static final String IP_SERVER = "localhost";
 	private static Scanner leer;
 		
@@ -42,13 +42,17 @@ public class SocketCliente {
 			String texto = "";
 			boolean continuar = true;
 			do {
-				
 				//System.out.println("CLIENTE: Escribe mensaje (FIN para terminar): ");
+				
+				//Cargamos el menu inicial y recuperamos la opción elegida
 				int opcion = menu();
+				//Si la opcion está fuera del rango de opciones se repetira el menu
 				while (opcion<1 || opcion>3){
 					opcion = menu();
 				}
-					
+				//enviamos la opcion elegida al servidor
+				salida.println(String.valueOf(opcion));
+				//Segun la opcion elegida, guardamos la respuesta en un string y la enviamos al servidor
 				switch(opcion) {
 					case 1: // Consultar película por ID
 						System.out.println("Introduzca ID de la película");
@@ -90,6 +94,8 @@ public class SocketCliente {
 		System.out.println("CLIENTE: Fin del programa");
 
 	}
+	
+	//Menu inicial de la aplicacion
 	public static int menu() {
 		
 		

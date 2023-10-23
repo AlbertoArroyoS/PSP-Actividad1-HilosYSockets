@@ -72,10 +72,9 @@ public class HiloBibliotecaVirtual implements Runnable{
 					
 				}*/
 				texto = entradaBuffer.readLine();
-				int opcion = Integer.parseInt(texto);
+				int opcion =  Integer.parseInt(texto);
 
 				if (opcion == 1) { // Consultar película por ID
-				    System.out.println("Introduzca ID de la película");
 				    texto = entradaBuffer.readLine(); // Lee el ID
 				    int peliculaId = Integer.parseInt(texto);
 				    Pelicula pelicula = encontrarPorId(peliculaId);

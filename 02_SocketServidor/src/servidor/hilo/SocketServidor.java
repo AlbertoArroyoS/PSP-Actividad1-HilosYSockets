@@ -10,7 +10,7 @@ import javabean.Pelicula;
 
 public class SocketServidor {
 	
-	public static final int PUERTO = 2018;
+	public static final int PUERTO = 3333;
 	private static List<Pelicula> biblioteca = new ArrayList<>();
 
 	public static void main(String[] args) {
