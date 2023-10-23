@@ -21,7 +21,8 @@ public class SocketCliente {
 	}
 
 	public static void main(String[] args) {
-		System.out.println("        APLICACI�N CLIENTE         ");
+		System.out.println("-----------------------------------");
+		System.out.println("   APLICACION CLIENTE BIBLIOTECA   ");
 		System.out.println("-----------------------------------");
 
 		InetSocketAddress direccionServidor = new InetSocketAddress(IP_SERVER, PUERTO);
@@ -42,7 +43,6 @@ public class SocketCliente {
 			String texto = "";
 			boolean continuar = true;
 			do {
-				//System.out.println("CLIENTE: Escribe mensaje (FIN para terminar): ");
 				
 				//Cargamos el menu inicial y recuperamos la opción elegida
 				int opcion = menu();
@@ -50,7 +50,7 @@ public class SocketCliente {
 				while (opcion<1 || opcion>3){
 					opcion = menu();
 				}
-				//enviamos la opcion elegida al servidor
+				//enviamos la opcion elegida al servidor como string
 				salida.println(String.valueOf(opcion));
 				//Segun la opcion elegida, guardamos la respuesta en un string y la enviamos al servidor
 				switch(opcion) {

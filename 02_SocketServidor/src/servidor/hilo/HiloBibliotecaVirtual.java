@@ -23,8 +23,6 @@ public class HiloBibliotecaVirtual implements Runnable{
 	private List<Pelicula> peliculaLista;
 	
 
-	
-	
 	public HiloBibliotecaVirtual(Socket socketAlCliente, List<Pelicula> peliculas) {
 		numCliente++;
 		hilo = new Thread(this, "Cliente_"+numCliente);
@@ -52,25 +50,9 @@ public class HiloBibliotecaVirtual implements Runnable{
 			boolean continuar = true;
 			
 			//Procesaremos entradas hasta que el texto del cliente sea FIN
-			while (continuar) {
-			/*	texto = entradaBuffer.readLine();
+			while (continuar) {		
 				//trim() es un metodo que quita los espacios en blanco del principio
 				//y del final
-				if (texto.trim().equalsIgnoreCase("FIN")) {
-					//Mandamos la se�al de "0" para que el cliente sepa que vamos a cortar
-					//la comunicacion
-					salida.println("OK");
-					System.out.println(hilo.getName() + " ha cerrado la comunicacion");
-					continuar = false;
-				} else {
-					//Contamos las letras que tiene la frase que nos han mandado
-					int numeroLetras = texto.trim().length();
-					System.out.println(hilo.getName() + " dice: " + texto + " y tiene " 
-							+ numeroLetras + " letras");
-					//Le mandamos la respuesta al cliente
-					salida.println(numeroLetras);
-					
-				}*/
 				texto = entradaBuffer.readLine();
 				int opcion =  Integer.parseInt(texto);
 
@@ -88,8 +70,7 @@ public class HiloBibliotecaVirtual implements Runnable{
 				    System.out.println(hilo.getName() + " ha cerrado la comunicación");
 				    continuar = false;
 				}
-            
-				
+            				
 			}
 			//Cerramos el socket
 			socketAlCliente.close();
@@ -101,7 +82,6 @@ public class HiloBibliotecaVirtual implements Runnable{
 			System.err.println("HiloBibliotecaVirtual: Error");
 			e.printStackTrace();
 		}
-
 		
 	}
 	//Metodo para encontrar la pelicula por id

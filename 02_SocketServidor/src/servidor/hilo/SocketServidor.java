@@ -18,8 +18,9 @@ public class SocketServidor {
 		
 		cargarDatos();
 		
-		System.out.println("      APLICACI�N DE SERVIDOR CON HILOS     ");
-		System.out.println("-------------------------------------------");		
+		System.out.println("----------------------------------------------");
+		System.out.println("  APLICACION DE SERVIDOR CON HILOS BIBLIOTECA");
+		System.out.println("----------------------------------------------");		
 		
 		int peticion = 0;
 		
@@ -53,10 +54,7 @@ public class SocketServidor {
 		biblioteca.add(new Pelicula(3, "Los vengadores", "Joss Whedon", 9.99));
 		biblioteca.add(new Pelicula(4, "Spiderman", "Sam Raimi", 14.99));
 		biblioteca.add(new Pelicula(5, "Superman", "Richard Donner", 8.99));
-		
-		
+				
 	}
-
-	
 
 }
