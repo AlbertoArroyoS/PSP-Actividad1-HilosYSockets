@@ -8,6 +8,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
+
 public class SocketCliente {
 	
 	// IP y Puerto a la que nos vamos a conectar
@@ -41,12 +42,27 @@ public class SocketCliente {
 			String texto = "";
 			boolean continuar = true;
 			do {
+				
 				//System.out.println("CLIENTE: Escribe mensaje (FIN para terminar): ");
-				texto = menu();
+				int opcion = menu();
 				
-				//texto = sc.nextLine();//frase que vamos a mandar para contar				
-				
-				salida.println(texto);
+				if (opcion<1 || opcion > 3) {
+					System.out.println("OPCION INCORRECTA");
+					menu();
+				}
+				if (opcion == 1) { // Consultar película por ID
+				    System.out.println("Introduzca ID de la película");
+				    texto = sc.nextLine();
+				    salida.println(texto);
+				} else if (opcion == 2) { // Consultar película por título
+				    System.out.println("Introduzca título de la película");
+				    texto = sc.nextLine();
+				    salida.println(texto);
+				} else if (opcion == 3) { // Salir de la aplicación
+					continuar = false;
+					break;
+
+				}
 				System.out.println("CLIENTE: Esperando respuesta ...... ");				
 				String respuesta = entradaBuffer.readLine();
 								
@@ -72,7 +88,8 @@ public class SocketCliente {
 		System.out.println("CLIENTE: Fin del programa");
 
 	}
-	public static String menu() {
+	public static int menu() {
+		
 		
 		int opcion = 0;
 		System.out.println("----------------------------------------------------");
@@ -82,15 +99,35 @@ public class SocketCliente {
 		System.out.println("2. Consultar película por título ");
 		System.out.println("3. Salir de la aplicación");
 		System.out.println("----------------------------------------------------");
-		System.out.println("Introduzca una opción del 1 al 3, si quiere salir 4");
+		System.out.println("Introduzca una opción del 1 al 3, si quiere salir 3");
 		System.out.println("----------------------------------------------------");
 		opcion = leer.nextInt();
 		
+		return opcion;
+		
+	}
+	
+	public static String menu2(int opcion){
+		
+		String texto="";
 		if (opcion<1 || opcion > 3) {
 			System.out.println("OPCION INCORRECTA");
+			menu();
+		}
+		if (opcion == 1) { // Consultar película por ID
+		    System.out.println("Introduzca ID de la película");
+		    texto = leer.nextLine();
+		} else if (opcion == 2) { // Consultar película por título
+		    System.out.println("Introduzca título de la película");
+		    texto = leer.nextLine();
+		} else if (opcion == 3) { // Salir de la aplicación
+		    texto = "Salir";
+
 		}
 		
-		return String.valueOf(opcion);
+		return texto;
+		
+		
 	}
 
 }
