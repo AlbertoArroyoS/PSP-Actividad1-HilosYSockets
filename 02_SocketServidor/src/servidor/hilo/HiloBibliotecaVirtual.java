@@ -80,9 +80,8 @@ public class HiloBibliotecaVirtual implements Runnable{
 				    Pelicula pelicula = encontrarPorId(peliculaId);
 				    salida.println(pelicula);
 				} else if (opcion == 2) { // Consultar película por título
-				    System.out.println("Introduzca título de la película");
-				    String title = entradaBuffer.readLine(); // Lee el título
-				    Pelicula pelicula = encontrarPorTitulo(title);
+				    String titulo = entradaBuffer.readLine(); // Lee el título
+				    Pelicula pelicula = encontrarPorTitulo(titulo);
 				    salida.println(pelicula);
 				} else if (opcion == 3) { // Salir de la aplicación
 				    salida.println("OK");
@@ -94,13 +93,12 @@ public class HiloBibliotecaVirtual implements Runnable{
 			}
 			//Cerramos el socket
 			socketAlCliente.close();
-			//Notese que si no cerramos el socket ni en el servidor ni en el cliente, mantendremos
-			//la comunicacion abierta
+			
 		} catch (IOException e) {
-			System.err.println("HiloContadorLetras: Error de entrada/salida");
+			System.err.println("HiloBibliotecaVirtual: Error de entrada/salida");
 			e.printStackTrace();
 		} catch (Exception e) {
-			System.err.println("HiloContadorLetras: Error");
+			System.err.println("HiloBibliotecaVirtual: Error");
 			e.printStackTrace();
 		}
 

@@ -65,9 +65,9 @@ public class SocketCliente {
 						salida.println(texto);
 						break;
 					case 3:// Salir de la aplicación
-						continuar = false;
+						salida.println(String.valueOf(opcion));
 						break;
-					}
+				}
 					
 				System.out.println("CLIENTE: Esperando respuesta ...... ");				
 				String respuesta = entradaBuffer.readLine();
@@ -97,8 +97,7 @@ public class SocketCliente {
 	
 	//Menu inicial de la aplicacion
 	public static int menu() {
-		
-		
+			
 		int opcion = 0;
 		System.out.println("----------------------------------------------------");
 		System.out.println("|                      MENU                        |");
