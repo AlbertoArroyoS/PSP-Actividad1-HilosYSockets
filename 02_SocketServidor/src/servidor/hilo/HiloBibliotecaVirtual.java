@@ -71,20 +71,21 @@ public class HiloBibliotecaVirtual implements Runnable{
 					salida.println(numeroLetras);
 					
 				}*/
+				texto = entradaBuffer.readLine();
 				
-				int choice = entradaBuffer.read();
+				int opcion = Integer.valueOf(texto);
 
-                if (choice == 1) { // Consultar película por ID
+                if (opcion == 1) { // Consultar película por ID
                 	System.out.println("Introduzca ID de la pelicula");
                     int peliculaId = entrada.read();
                     Pelicula pelicula = encontrarPorId(peliculaId);
                     salida.println(pelicula);
-                } else if (choice == 2) { // Consultar película por título
+                } else if (opcion == 2) { // Consultar película por título
                 	System.out.println("Introduzca ID de la pelicula");
                     String title = entradaBuffer.readLine();
                     Pelicula pelicula = encontrarPorTitulo(title);
                     salida.println(pelicula);
-                } else if (choice == 3) { // Salir de la aplicación
+                } else if (opcion == 3) { // Salir de la aplicación
                 	salida.println("OK");
 					System.out.println(hilo.getName() + " ha cerrado la comunicacion");
 					continuar = false;

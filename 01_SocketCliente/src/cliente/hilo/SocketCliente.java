@@ -38,7 +38,7 @@ public class SocketCliente {
 			
 			PrintStream salida = new PrintStream(socketAlServidor.getOutputStream());
 			
-			int texto = 0;
+			String texto = "";
 			boolean continuar = true;
 			do {
 				//System.out.println("CLIENTE: Escribe mensaje (FIN para terminar): ");
@@ -72,7 +72,7 @@ public class SocketCliente {
 		System.out.println("CLIENTE: Fin del programa");
 
 	}
-	public static int menu() {
+	public static String menu() {
 		
 		int opcion = 0;
 		System.out.println("----------------------------------------------------");
@@ -90,7 +90,7 @@ public class SocketCliente {
 			System.out.println("OPCION INCORRECTA");
 		}
 		
-		return opcion;
+		return String.valueOf(opcion);
 	}
 
 }
