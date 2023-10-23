@@ -1,5 +1,4 @@
 INDEX VERSION 1.131+C:\Users\termi\Mi unidad\GitHub Alberto Arroyo\Programacion Servicios y procesos\PSP-Actividad1-HilosYSockets\.metadata\.plugins\org.eclipse.jdt.core
 2014949329.index
-3641177884.index
 1974445290.index
 1865797976.index

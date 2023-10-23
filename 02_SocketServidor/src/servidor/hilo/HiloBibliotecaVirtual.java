@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.List;
 
 import javabean.Pelicula;
@@ -59,17 +60,34 @@ public class HiloBibliotecaVirtual implements Runnable{
 				if (opcion == 1) { // Consultar película por ID
 				    texto = entradaBuffer.readLine(); // Lee el ID
 				    int peliculaId = Integer.parseInt(texto);
-				    Pelicula pelicula = encontrarPorId(peliculaId);
+				    Pelicula pelicula = buscarPorId(peliculaId);
 				    salida.println(pelicula);
+				    salida.println("FIN_BUSQUEDA");
 				} else if (opcion == 2) { // Consultar película por título
 				    String titulo = entradaBuffer.readLine(); // Lee el título
-				    Pelicula pelicula = encontrarPorTitulo(titulo);
+				    Pelicula pelicula = buscarPorTitulo(titulo);
 				    salida.println(pelicula);
-				} else if (opcion == 3) { // Salir de la aplicación
-				    salida.println("OK");
-				    System.out.println(hilo.getName() + " ha cerrado la comunicación");
-				    continuar = false;
-				}
+				    salida.println("FIN_BUSQUEDA");
+				    
+				} else if (opcion == 3) { // Consultar películas por director
+				    String director = entradaBuffer.readLine(); // Lee el nombre del director
+				    List<Pelicula> peliculas = buscarPeliculasPorDirector(director);
+
+				    if (peliculas.isEmpty()) {
+				        salida.println("No se encontraron películas para el director: " + director);
+				    } else {
+				        // Envía cada película al cliente como una cadena, con un marcador especial para el final
+				        for (Pelicula pelicula : peliculas) {
+				            String peliculaInfo = pelicula.getId() + "," + pelicula.getTitulo() + "," + pelicula.getDirector() + "," + pelicula.getPrecio();
+				            salida.println(peliculaInfo);
+				        }
+				        salida.println("FIN_BUSQUEDA"); // Marcador para indicar el final de la lista
+				    }
+				} else if (opcion == 4) { // Salir de la aplicación
+                    salida.println("OK");
+                    System.out.println(hilo.getName() + " ha cerrado la comunicación");
+                    continuar = false;
+                }
             				
 			}
 			//Cerramos el socket
@@ -85,7 +103,7 @@ public class HiloBibliotecaVirtual implements Runnable{
 		
 	}
 	//Metodo para encontrar la pelicula por id
-	private Pelicula encontrarPorId(int id) {
+	private Pelicula buscarPorId(int id) {
         for (Pelicula pelicula : peliculaLista) {
             if (pelicula.getId() == id) {
                 return pelicula;
@@ -94,13 +112,23 @@ public class HiloBibliotecaVirtual implements Runnable{
         return null;
     }
 	//Metodo para encontrar la pelicula por titulo
-	private Pelicula encontrarPorTitulo(String title) {
+	private Pelicula buscarPorTitulo(String title) {
         for (Pelicula pelicula : peliculaLista) {
             if (pelicula.getTitulo().equalsIgnoreCase(title)) {
                 return pelicula;
             }
         }
         return null;
+    }
+	//Requerimiento 2 devolver una lista con los directores
+	private List<Pelicula> buscarPeliculasPorDirector(String director) {
+        List<Pelicula> peliculasPorDirector = new ArrayList<>();
+        for (Pelicula pelicula : peliculaLista) {
+            if (pelicula.getDirector().equalsIgnoreCase(director)) {
+                peliculasPorDirector.add(pelicula);
+            }
+        }
+        return peliculasPorDirector;
     }
 
 }

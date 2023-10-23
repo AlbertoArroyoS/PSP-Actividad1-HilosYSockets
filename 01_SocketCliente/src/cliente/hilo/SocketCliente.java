@@ -47,7 +47,7 @@ public class SocketCliente {
 				//Cargamos el menu inicial y recuperamos la opción elegida
 				int opcion = menu();
 				//Si la opcion está fuera del rango de opciones se repetira el menu
-				while (opcion<1 || opcion>3){
+				while (opcion<1 || opcion>4){
 					opcion = menu();
 				}
 				//enviamos la opcion elegida al servidor como string
@@ -64,18 +64,39 @@ public class SocketCliente {
 						texto = sc.nextLine();
 						salida.println(texto);
 						break;
-					case 3:// Salir de la aplicación
+					case 3: //Consultar película por título
+						System.out.println("Introduzca nombre del director");
+						texto = sc.nextLine();
+						salida.println(texto);
+						break;
+					case 4:// Salir de la aplicación
 						salida.println(String.valueOf(opcion));
 						break;
 				}
 					
 				System.out.println("CLIENTE: Esperando respuesta ...... ");				
 				String respuesta = entradaBuffer.readLine();
-								
+				//String peliculaInfo;
+				
+				
 				if("OK".equalsIgnoreCase(respuesta)) {
 					continuar = false;
 				}else {
-					System.out.println("CLIENTE: Servidor responde: " + respuesta);
+					
+					System.out.println("CLIENTE: Servidor responde: \n1" + respuesta);
+				   
+					while (!(respuesta = entradaBuffer.readLine()).equals("FIN_BUSQUEDA")) {
+				        // Procesa cada línea de película
+				        String[] datosPelicula = respuesta.split(",");
+				        int id = Integer.parseInt(datosPelicula[0]);
+				        String titulo = datosPelicula[1];
+				        String director = datosPelicula[2];
+				        double precio = Double.parseDouble(datosPelicula[3]);
+
+				        System.out.println("ID: " + id + ", Título: " + titulo + ", Director: " + director + ", Precio: " + precio);
+				        
+						//peliculaInfo = entradaBuffer.readLine();
+				    }
 				}				
 			}while(continuar);
 			//Cerramos la conexion
@@ -104,9 +125,10 @@ public class SocketCliente {
 		System.out.println("----------------------------------------------------");
 		System.out.println("1. Consultar pelicula por ID");
 		System.out.println("2. Consultar película por título ");
-		System.out.println("3. Salir de la aplicación");
+		System.out.println("3. Consultar películas por director ");
+		System.out.println("4. Salir de la aplicación");
 		System.out.println("----------------------------------------------------");
-		System.out.println("Introduzca una opción del 1 al 3, si quiere salir 3");
+		System.out.println("Introduzca una opción del 1 al 4, si quiere salir 4");
 		System.out.println("----------------------------------------------------");
 		opcion = leer.nextInt();
 		
