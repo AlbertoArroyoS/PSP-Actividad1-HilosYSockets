@@ -28,7 +28,7 @@ public class SocketCliente {
 		
 		try (Scanner sc = new Scanner(System.in)){
 						
-			System.out.println("CLIENTE: Esperando a que el servidor acepte la conexi�n");
+			System.out.println("CLIENTE: Esperando a que el servidor acepte la conexion");
 			Socket socketAlServidor = new Socket();
 			socketAlServidor.connect(direccionServidor);
 			System.out.println("CLIENTE: Conexion establecida... a " + IP_SERVER + 
@@ -45,31 +45,33 @@ public class SocketCliente {
 				
 				//System.out.println("CLIENTE: Escribe mensaje (FIN para terminar): ");
 				int opcion = menu();
-				
-				if (opcion<1 || opcion > 3) {
-					System.out.println("OPCION INCORRECTA");
-					menu();
+				while (opcion<1 || opcion>3){
+					opcion = menu();
 				}
-				if (opcion == 1) { // Consultar película por ID
-				    System.out.println("Introduzca ID de la película");
-				    texto = sc.nextLine();
-				    salida.println(texto);
-				} else if (opcion == 2) { // Consultar película por título
-				    System.out.println("Introduzca título de la película");
-				    texto = sc.nextLine();
-				    salida.println(texto);
-				} else if (opcion == 3) { // Salir de la aplicación
-					continuar = false;
-					break;
-
-				}
+					
+				switch(opcion) {
+					case 1: // Consultar película por ID
+						System.out.println("Introduzca ID de la película");
+						texto = sc.nextLine();
+						salida.println(texto);
+						break;
+					case 2: //Consultar película por título
+						System.out.println("Introduzca título de la película");
+						texto = sc.nextLine();
+						salida.println(texto);
+						break;
+					case 3:// Salir de la aplicación
+						continuar = false;
+						break;
+					}
+					
 				System.out.println("CLIENTE: Esperando respuesta ...... ");				
 				String respuesta = entradaBuffer.readLine();
 								
 				if("OK".equalsIgnoreCase(respuesta)) {
 					continuar = false;
 				}else {
-					System.out.println("CLIENTE: Servidor responde, numero de letras: " + respuesta);
+					System.out.println("CLIENTE: Servidor responde: " + respuesta);
 				}				
 			}while(continuar);
 			//Cerramos la conexion
@@ -84,7 +86,7 @@ public class SocketCliente {
 			System.err.println("CLIENTE: Error -> " + e);
 			e.printStackTrace();
 		}
-		
+		leer.close();
 		System.out.println("CLIENTE: Fin del programa");
 
 	}
@@ -103,31 +105,14 @@ public class SocketCliente {
 		System.out.println("----------------------------------------------------");
 		opcion = leer.nextInt();
 		
+		if (opcion<1 || opcion > 4) {
+			System.out.println("OPCION INCORRECTA");
+		}
+		
+		
 		return opcion;
 		
 	}
 	
-	public static String menu2(int opcion){
-		
-		String texto="";
-		if (opcion<1 || opcion > 3) {
-			System.out.println("OPCION INCORRECTA");
-			menu();
-		}
-		if (opcion == 1) { // Consultar película por ID
-		    System.out.println("Introduzca ID de la película");
-		    texto = leer.nextLine();
-		} else if (opcion == 2) { // Consultar película por título
-		    System.out.println("Introduzca título de la película");
-		    texto = leer.nextLine();
-		} else if (opcion == 3) { // Salir de la aplicación
-		    texto = "Salir";
-
-		}
-		
-		return texto;
-		
-		
-	}
 
 }
