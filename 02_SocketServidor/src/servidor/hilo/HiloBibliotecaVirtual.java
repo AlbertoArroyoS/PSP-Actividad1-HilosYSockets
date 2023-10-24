@@ -79,7 +79,7 @@ public class HiloBibliotecaVirtual implements Runnable{
 				} else if (opcion == 3) { // Consultar películas por director
 					consultarPeliculasPorDirector(salida, entradaBuffer);
 				}else if (opcion == 4) { // Añadir película
-					añadirPelicula(salida, entradaBuffer);						    
+					agregarPelicula(salida, entradaBuffer);						    
 				}else if (opcion == 5) { // Salir de la aplicación
                     salida.println("OK");
                     System.out.println(hilo.getName() + " ha cerrado la comunicación");
@@ -157,17 +157,7 @@ public class HiloBibliotecaVirtual implements Runnable{
 	
 	//Requerimiento 3 metodo sincronizado para que los demas hilos no puedan entrar mientras otro lo usa
 	
-	private synchronized void agregarPelicula(Pelicula pelicula) {
-		/*	
-		try {
-			//Thread.sleep(10000);//parar 10 segundos
-			wait();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}*/
-		
-		peliculaLista.add(pelicula);			
-    }
+
 	
 	//************MODULARIZAR LAS OPCIONES************************
 	
@@ -203,7 +193,7 @@ public class HiloBibliotecaVirtual implements Runnable{
 	        }
 	   }
 	 
-	 private synchronized void añadirPelicula(PrintStream salida, BufferedReader entradaBuffer) throws IOException {
+	 private synchronized void agregarPelicula(PrintStream salida, BufferedReader entradaBuffer) throws IOException {
 	 
 		 	synchronized (peliculaLista) {
 	            salida.println("ID de la película:");
@@ -225,13 +215,17 @@ public class HiloBibliotecaVirtual implements Runnable{
 	                salida.println("Película agregada correctamente:\n" + pelicula);
 	                salida.println("FIN_BUSQUEDA");
 	            }
+	            /*	
+	    		try {
+	    			//Thread.sleep(10000);//parar 10 segundos
+	    			wait();
+	    		} catch (InterruptedException e) {
+	    			e.printStackTrace();
+	    		}*/
 	        }
 			
 			 
 	    }
 	 
-	 
-	 
-	
 
 }
