@@ -47,7 +47,7 @@ public class SocketCliente {
 				//Cargamos el menu inicial y recuperamos la opción elegida
 				int opcion = menu();
 				//Si la opcion está fuera del rango de opciones se repetira el menu
-				while (opcion<1 || opcion>4){
+				while (opcion<1 || opcion>5){
 					opcion = menu();
 				}
 				//enviamos la opcion elegida al servidor como string
@@ -69,9 +69,27 @@ public class SocketCliente {
 						texto = sc.nextLine();
 						salida.println(texto);
 						break;
-					case 4:// Salir de la aplicación
+					case 4://Añadir pelicula
+						System.out.println("Introduzca el ID de la película:");
+					    int id = leer.nextInt();
+					    salida.println(id);
+					    leer.nextLine(); // Limpiar el búfer de nueva línea
+					    System.out.println("Introduzca el título de la película:");
+					    String title = leer.nextLine();
+					    salida.println(title);
+					    System.out.println("Introduzca el director de la película:");
+					    String director = leer.nextLine();
+					    salida.println(director);
+					    System.out.println("Introduzca el precio de la película:");
+					    double precio = leer.nextDouble();
+					    salida.println(precio);
+					    leer.nextLine(); // Limpiar el búfer de nueva línea
+					    opcion = menu();
+					    break;				    
+					case 5:// Salir de la aplicación
 						salida.println(String.valueOf(opcion));
 						break;
+											
 				}
 					
 				System.out.println("CLIENTE: Esperando respuesta ...... ");				
@@ -104,7 +122,7 @@ public class SocketCliente {
 			//Cerramos la conexion
 			socketAlServidor.close();
 		} catch (UnknownHostException e) {
-			System.err.println("CLIENTE: No encuentro el servidor en la direcci�n" + IP_SERVER);
+			System.err.println("CLIENTE: No encuentro el servidor en la direccion" + IP_SERVER);
 			e.printStackTrace();
 		} catch (IOException e) {
 			System.err.println("CLIENTE: Error de entrada/salida");
@@ -128,13 +146,14 @@ public class SocketCliente {
 		System.out.println("1. Consultar pelicula por ID");
 		System.out.println("2. Consultar película por título ");
 		System.out.println("3. Consultar películas por director ");
-		System.out.println("4. Salir de la aplicación");
+		System.out.println("4. Añadir pelicula ");
+		System.out.println("5. Salir de la aplicación");
 		System.out.println("----------------------------------------------------");
-		System.out.println("Introduzca una opción del 1 al 4, si quiere salir 4");
+		System.out.println("Introduzca una opción del 1 al 5, si quiere salir 5");
 		System.out.println("----------------------------------------------------");
 		opcion = leer.nextInt();
 		
-		if (opcion<1 || opcion > 4) {
+		if (opcion<1 || opcion > 5) {
 			System.out.println("OPCION INCORRECTA");
 		}
 		

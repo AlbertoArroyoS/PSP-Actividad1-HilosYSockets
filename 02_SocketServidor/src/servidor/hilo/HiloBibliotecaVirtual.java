@@ -84,11 +84,28 @@ public class HiloBibliotecaVirtual implements Runnable{
 				        }
 				        salida.println("FIN_BUSQUEDA"); // Marcador para indicar el final de la lista
 				    }
-				} else if (opcion == 4) { // Salir de la aplicación
+				}else if (opcion == 4) { // Añadir película
+				    // Solicitar todos los datos de la película al cliente
+					//agregarPelicula();
+					System.out.println("Introduzca el ID de la película:");
+				    int id = Integer.parseInt(entradaBuffer.readLine());
+				    System.out.println("Introduzca el título de la película:");
+				    String title = entradaBuffer.readLine();
+				    System.out.println("Introduzca el director de la película:");
+				    String director = entradaBuffer.readLine();
+				    System.out.println("Introduzca el precio de la película:");
+				    double precio = Double.parseDouble(entradaBuffer.readLine());
+				    peliculaLista.add(new Pelicula(id, title, director, precio));				    
+				    System.out.println("Pelicula agregada correctamente.");
+				    //salida.println("FIN_BUSQUEDA");
+				}else if (opcion == 5) { // Salir de la aplicación
                     salida.println("OK");
                     System.out.println(hilo.getName() + " ha cerrado la comunicación");
                     continuar = false;
-                }
+                } 
+				
+				
+				
             				
 			}
 			//Cerramos el socket
@@ -131,5 +148,20 @@ public class HiloBibliotecaVirtual implements Runnable{
         }
         return peliculasPorDirector;
     }
+	//Requerimiento 3 metodo sincronizado para que los demas hilos no puedan entrar mientras otro lo usa
+	/*
+	public synchronized void agregarPelicula() {
+		 	
+		 	System.out.println("Introduzca el ID de la película:");
+		    int id = Integer.parseInt(entradaBuffer.readLine());
+		    System.out.println("Introduzca el título de la película:");
+		    String title = entradaBuffer.readLine();
+		    System.out.println("Introduzca el director de la película:");
+		    String director = entradaBuffer.readLine();
+		    System.out.println("Introduzca el precio de la película:");
+		    double precio = Double.parseDouble(entradaBuffer.readLine());
+		    peliculaLista.add(new Pelicula(id, title, director, precio));
+		    
+	 }*/
 
 }
