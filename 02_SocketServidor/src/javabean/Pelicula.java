@@ -4,7 +4,7 @@ import java.util.Objects;
 
 
 /**
- * La clase Pelicula representa una película con propiedades como ID, título, director y precio.
+ * La clase Pelicula representa una pelicula con propiedades como ID, titulo, director y precio.
  * 
  * @author Alberto Arroyo Santofimia
  * 
@@ -84,9 +84,9 @@ public class Pelicula {
 	}
 
 	 /**
-     * Devuelve una representación de cadena de la película que incluye su ID, título, director y precio.
+     * Devuelve una representación de cadena de la pelicula que incluye su ID, titulo, director y precio.
      *
-     * @return Una cadena con los detalles de la película.
+     * @return Una cadena con los detalles de la pelicula.
      */
 
 	@Override

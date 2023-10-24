@@ -9,8 +9,8 @@ import java.net.UnknownHostException;
 import java.util.Scanner;
 
 /**
- * Esta clase representa un cliente para la aplicación de biblioteca virtual que se comunica
- * con el servidor a través de sockets. Creara un hilo nuevo por cada cliente nuevo
+ * Esta clase representa un cliente para la aplicacion de biblioteca virtual que se comunica
+ * con el servidor a traves de sockets. Creara un hilo nuevo por cada cliente nuevo
  * 
  * @author Alberto Arroyo Santofimia
  * 
@@ -183,7 +183,7 @@ public class SocketCliente {
 	/**
      *  El metodo menu() muestra un menú de opciones y permite al usuario seleccionar una.
      *
-     * @return un numero entero, que representa la opción seleccionada por el usuario.
+     * @return un numero entero, que representa la opcion seleccionada por el usuario.
      */
 	
 	//Menu inicial de la aplicacion

@@ -10,8 +10,8 @@ import javabean.Pelicula;
 
 
 /**
- * Esta clase representa el servidor de la aplicación de la biblioteca virtual
- * que atiende a múltiples clientes utilizando hilos.
+ * Esta clase representa el servidor de la aplicacion de la biblioteca virtual
+ * que atiende a multiples clientes utilizando hilos.
  * 
  * @author Alberto Arroyo Santofimia
  * 
@@ -59,10 +59,10 @@ public class SocketServidor {
 	
 	}
 	/**
-     * El metodo cargarDatos() Carga una lista de películas de ejemplo.
+     * El metodo cargarDatos() Carga una lista de peliculas de ejemplo.
      */
 	
-	// Crear una lista de películas y agregar 5 películas
+	// Crear una lista de peliculas y agregar 5 peliculas
 	private static void cargarDatos() {
 		biblioteca.add(new Pelicula(1, "Batman", "Tim Burton", 10.99));
 		biblioteca.add(new Pelicula(2, "Terminator", "James Cameron", 12.99));

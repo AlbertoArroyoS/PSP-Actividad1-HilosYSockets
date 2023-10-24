@@ -35,7 +35,7 @@ public class HiloBibliotecaVirtual implements Runnable{
      * Constructor para crear un nuevo hilo de manejo de cliente.
      *
      * @param socketAlCliente representa el socket del cliente.
-     * @param peliculas representa la lista de películas.
+     * @param peliculas representa la lista de peliculas.
      */
 	
 	public HiloBibliotecaVirtual(Socket socketAlCliente, List<Pelicula> peliculas) {
@@ -73,21 +73,21 @@ public class HiloBibliotecaVirtual implements Runnable{
 				int opcion =  Integer.parseInt(texto);
 
 				if (opcion == 1) { // Consultar película por ID
-					System.out.println("Introduzca ID de la película");
+					System.out.println("ID de la película");
 				    texto = entradaBuffer.readLine(); // Lee el ID
 				    int peliculaId = Integer.parseInt(texto);
 				    Pelicula pelicula = buscarPorId(peliculaId);
 				    salida.println(pelicula);
 				    salida.println("FIN_BUSQUEDA");
 				} else if (opcion == 2) { // Consultar película por título
-					System.out.println("Introduzca el título de la película:");
+					System.out.println("Título de la película:");
 				    String titulo = entradaBuffer.readLine(); // Lee el título
 				    Pelicula pelicula = buscarPorTitulo(titulo);
 				    salida.println(pelicula);
 				    salida.println("FIN_BUSQUEDA");
 				    
 				} else if (opcion == 3) { // Consultar películas por director
-					System.out.println("Introduzca el director de la película:");
+					System.out.println("Director de la película:");
 				    String director = entradaBuffer.readLine(); // Lee el nombre del director
 				    List<Pelicula> peliculas = buscarPeliculasPorDirector(director);
 
@@ -107,13 +107,13 @@ public class HiloBibliotecaVirtual implements Runnable{
 					
 					//pongo la sincronizacion a la lista de peliculas para que solo un hilo a la vez pueda agregar una pelicula a la lista
 				    synchronized (peliculaLista) {
-				        System.out.println("Introduzca el ID de la película:");
+				        System.out.println("ID de la película:");
 				        int id = Integer.parseInt(entradaBuffer.readLine());
-				        System.out.println("Introduzca el título de la película:");
+				        System.out.println("Título de la película:");
 				        String title = entradaBuffer.readLine();
-				        System.out.println("Introduzca el director de la película:");
+				        System.out.println("Director de la película:");
 				        String director = entradaBuffer.readLine();
-				        System.out.println("Introduzca el precio de la película:");
+				        System.out.println("Precio de la película:");
 				        double precio = Double.parseDouble(entradaBuffer.readLine());
 				        Pelicula pelicula = new Pelicula(id, title, director, precio);
 				        // Agregar la película a la lista de manera segura
@@ -151,10 +151,10 @@ public class HiloBibliotecaVirtual implements Runnable{
 		
 	}
 	/**
-     * El metodo buscarPorId() Busca una película por su ID en la lista de películas.
+     * El metodo buscarPorId() Busca una pelicula por su ID en la lista de peliculas.
      *
-     * @param id representa el ID de la película a buscar.
-     * @return objeto pelicula que representa la película encontrada o null si no se encuentra ninguna.
+     * @param id representa el ID de la pelicula a buscar.
+     * @return objeto pelicula que representa la pelicula encontrada o null si no se encuentra ninguna.
      */
 	
 	//Metodo para encontrar la pelicula por id
@@ -167,10 +167,10 @@ public class HiloBibliotecaVirtual implements Runnable{
         return null;
     }
 	/**
-     * El metodo buscarPorTitulo() Busca una película por su título en la lista de películas.
+     * El metodo buscarPorTitulo() Busca una pelicula por su titulo en la lista de peliculas.
      *
-     * @param titulo representa el título de la película a buscar.
-     * @return objeto pelicula que representa la película encontrada o null si no se encuentra ninguna.
+     * @param titulo representa el titulo de la pelicula a buscar.
+     * @return objeto pelicula que representa la pelicula encontrada o null si no se encuentra ninguna.
      */
 	
 	//Metodo para encontrar la pelicula por titulo
@@ -183,10 +183,10 @@ public class HiloBibliotecaVirtual implements Runnable{
         return null;
     }
 	/**
-     * El metodo buscarPeliculasPorDirector() busca películas por el nombre del director en la lista de películas.
+     * El metodo buscarPeliculasPorDirector() busca peliculas por el nombre del director en la lista de películas.
      *
-     * @param director representa el nombre del director de las películas a buscar.
-     * @return Una lista de películas que tienen el director especificado.
+     * @param director representa el nombre del director de las peliculas a buscar.
+     * @return Una lista de peliculas que tienen el director especificado.
      */
 	
 	//Requerimiento 2 devolver una lista con los directores
@@ -201,9 +201,9 @@ public class HiloBibliotecaVirtual implements Runnable{
     }
 	
 	 /**
-     * El metodo agregarPelicula() agrega una película a la lista de películas de manera sincronizada.
+     * El metodo agregarPelicula() agrega una pelicula a la lista de películas de manera sincronizada.
      *
-     * @param pelicula La película que se va a agregar.
+     * @param pelicula La pelicula que se va a agregar.
      */
 	
 	//Requerimiento 3 metodo sincronizado para que los demas hilos no puedan entrar mientras otro lo usa
