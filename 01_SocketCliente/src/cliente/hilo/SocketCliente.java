@@ -83,19 +83,21 @@ public class SocketCliente {
 					continuar = false;
 				}else {
 					
-					System.out.println("CLIENTE: Servidor responde: \n1" + respuesta);
+					System.out.println("CLIENTE: Servidor responde: \n" + respuesta);
 				   
 					while (!(respuesta = entradaBuffer.readLine()).equals("FIN_BUSQUEDA")) {
 				        // Procesa cada línea de película
-				        String[] datosPelicula = respuesta.split(",");
+						
+				    /*    String[] datosPelicula = respuesta.split(",");
 				        int id = Integer.parseInt(datosPelicula[0]);
 				        String titulo = datosPelicula[1];
 				        String director = datosPelicula[2];
 				        double precio = Double.parseDouble(datosPelicula[3]);
 
 				        System.out.println("ID: " + id + ", Título: " + titulo + ", Director: " + director + ", Precio: " + precio);
-				        
+				        */
 						//peliculaInfo = entradaBuffer.readLine();
+						System.out.println(respuesta);
 				    }
 				}				
 			}while(continuar);

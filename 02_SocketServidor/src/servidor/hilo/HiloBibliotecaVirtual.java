@@ -78,8 +78,9 @@ public class HiloBibliotecaVirtual implements Runnable{
 				    } else {
 				        // Envía cada película al cliente como una cadena, con un marcador especial para el final
 				        for (Pelicula pelicula : peliculas) {
-				            String peliculaInfo = pelicula.getId() + "," + pelicula.getTitulo() + "," + pelicula.getDirector() + "," + pelicula.getPrecio();
-				            salida.println(peliculaInfo);
+				           // String peliculaInfo = pelicula.getId() + "," + pelicula.getTitulo() + "," + pelicula.getDirector() + "," + pelicula.getPrecio();
+				           // salida.println(peliculaInfo);
+				        	salida.println(pelicula);
 				        }
 				        salida.println("FIN_BUSQUEDA"); // Marcador para indicar el final de la lista
 				    }
