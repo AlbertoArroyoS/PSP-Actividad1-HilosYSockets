@@ -102,13 +102,18 @@ public class HiloBibliotecaVirtual implements Runnable{
 				        System.out.println("Introduzca el precio de la película:");
 				        double precio = Double.parseDouble(entradaBuffer.readLine());
 				        Pelicula pelicula = new Pelicula(id, title, director, precio);
-				        
 				        // Agregar la película a la lista de manera segura
-				        agregarPelicula(pelicula);
+				        if(peliculaLista.contains(pelicula)) {
+				        	salida.println("Pelicula no añadida, ya existe una pelicula con ese ID");
+				        	salida.println("FIN_BUSQUEDA");
+				        }else {
+				        	agregarPelicula(pelicula);
+				        	System.out.println("Película agregada correctamente.");
+					        salida.println("Película agregada correctamente: \n" + pelicula);
+					        salida.println("FIN_BUSQUEDA");
+				        }
 
-				        System.out.println("Película agregada correctamente.");
-				        salida.println("Película agregada correctamente: \n" + pelicula);
-				        salida.println("FIN_BUSQUEDA");
+				        
 				}
 				
 					
