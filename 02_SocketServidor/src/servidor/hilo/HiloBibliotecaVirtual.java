@@ -77,22 +77,7 @@ public class HiloBibliotecaVirtual implements Runnable{
 				} else if (opcion == 2) { // Consultar película por título
 					consultarPeliculaPorTitulo(salida, entradaBuffer);
 				} else if (opcion == 3) { // Consultar películas por director
-					System.out.println("Director de la película:");
-				    String director = entradaBuffer.readLine(); // Lee el nombre del director
-				    List<Pelicula> peliculas = buscarPeliculasPorDirector(director);
-
-				    if (peliculas.isEmpty()) {
-				    	salida.println("No se encontraron películas para el director: " + director);
-				    	salida.println("FIN_BUSQUEDA");
-				    } else {
-				        // Envía cada película al cliente como una cadena, con un marcador especial para el final
-				        for (Pelicula pelicula : peliculas) {
-				           // String peliculaInfo = pelicula.getId() + "," + pelicula.getTitulo() + "," + pelicula.getDirector() + "," + pelicula.getPrecio();
-				           // salida.println(peliculaInfo);
-				        	salida.println(pelicula);
-				        }
-				        salida.println("FIN_BUSQUEDA"); // Marcador para indicar el final de la lista
-				    }
+					consultarPeliculasPorDirector(salida, entradaBuffer);
 				}else if (opcion == 4) { // Añadir película
 					
 					//pongo la sincronizacion a la lista de peliculas para que solo un hilo a la vez pueda agregar una pelicula a la lista
@@ -225,6 +210,22 @@ public class HiloBibliotecaVirtual implements Runnable{
 	        Pelicula pelicula = buscarPorTitulo(titulo);
 	        salida.println(pelicula);
 	        salida.println("FIN_BUSQUEDA");
+	 }
+	 
+	 private void consultarPeliculasPorDirector(PrintStream salida, BufferedReader entradaBuffer) throws IOException {
+	        salida.println("Director de la película:");
+	        String director = entradaBuffer.readLine();
+	        List<Pelicula> peliculas = buscarPeliculasPorDirector(director);
+
+	        if (peliculas.isEmpty()) {
+	            salida.println("No se encontraron películas para el director: " + director);
+	            salida.println("FIN_BUSQUEDA");
+	        } else {
+	            for (Pelicula pelicula : peliculas) {
+	                salida.println(pelicula);
+	            }
+	            salida.println("FIN_BUSQUEDA");
+	        }
 	    }
 	 
 	 
