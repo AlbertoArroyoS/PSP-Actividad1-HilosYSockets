@@ -89,6 +89,8 @@ public class SocketCliente {
 					case 5:// Salir de la aplicación
 						salida.println(String.valueOf(opcion));
 						break;
+					default:
+                        System.out.println("Opción no válida, intente de nuevo.");
 											
 				}
 					
@@ -151,7 +153,15 @@ public class SocketCliente {
 		System.out.println("----------------------------------------------------");
 		System.out.println("Introduzca una opción del 1 al 5, si quiere salir 5");
 		System.out.println("----------------------------------------------------");
-		opcion = leer.nextInt();
+		
+		try {
+			opcion = leer.nextInt();
+			
+		} catch (java.util.InputMismatchException e) {
+	        // Atrapar la excepción si se ingresa algo que no es un entero
+	        System.out.println("Entrada no válida. Ingrese un número entero.");
+	        leer.next(); // Limpiar el búfer de entrada para evitar un bucle infinito
+	    }
 		
 		if (opcion<1 || opcion > 5) {
 			System.out.println("OPCION INCORRECTA");
