@@ -55,9 +55,20 @@ public class SocketCliente {
 				//Segun la opcion elegida, guardamos la respuesta en un string y la enviamos al servidor
 				switch(opcion) {
 					case 1: // Consultar película por ID
-						System.out.println("Introduzca ID de la película");
-						texto = sc.nextLine();
-						salida.println(texto);
+						System.out.println("Introduzca ID de la película:");
+						int peliculaId = 0;
+						boolean entradaValida = false;
+						//bucle para comprobar si hemos metido un numero y en caso de que no, se repita
+						while (!entradaValida) {
+						    try {
+						        peliculaId = Integer.parseInt(sc.nextLine());
+						        entradaValida = true; // Si son numeros los pasa a true
+						    } catch (NumberFormatException e) {
+						        System.out.println("Entrada no válida. Ingrese un número entero.");
+						        System.out.println("Introduzca ID de la película:");
+						    }
+						}
+						salida.println(peliculaId);
 						break;
 					case 2: //Consultar película por título
 						System.out.println("Introduzca título de la película");
@@ -70,20 +81,42 @@ public class SocketCliente {
 						salida.println(texto);
 						break;
 					case 4://Añadir pelicula
-						System.out.println("Introduzca el ID de la película:");
-					    int id = leer.nextInt();
+						System.out.println("Introduzca ID de la película:");
+						int id = 0;
+						boolean entradaValidaId2 = false;
+						//bucle para comprobar si hemos metido un numero y en caso de que no, se repita
+						while (!entradaValidaId2) {
+						    try {
+						        id = Integer.parseInt(sc.nextLine());
+						        entradaValidaId2 = true; // Si son numeros los pasa a true
+						    } catch (NumberFormatException e) {
+						        System.out.println("Entrada no válida. Ingrese un número entero.");
+						        System.out.println("Introduzca ID de la película:");
+						    }
+						}
 					    salida.println(id);
-					    leer.nextLine(); // Limpiar el búfer de nueva línea
+					  //  sc.nextLine(); // Limpiar el búfer de nueva línea
 					    System.out.println("Introduzca el título de la película:");
-					    String title = leer.nextLine();
+					    String title = sc.nextLine();
 					    salida.println(title);
 					    System.out.println("Introduzca el director de la película:");
-					    String director = leer.nextLine();
+					    String director = sc.nextLine();
 					    salida.println(director);
 					    System.out.println("Introduzca el precio de la película:");
-					    double precio = leer.nextDouble();
-					    salida.println(precio);
-					    leer.nextLine(); // Limpiar el búfer de nueva línea
+					    double precio = 0;
+						boolean entradaValidaPrecio = false;
+						//bucle para comprobar si hemos metido un numero y en caso de que no, se repita
+						while (!entradaValidaPrecio) {
+						    try {
+						        precio = Double.parseDouble(sc.nextLine());
+						        entradaValidaPrecio = true; // Establece la bandera en verdadera si la conversión tiene éxito
+						    } catch (NumberFormatException e) {
+						        System.out.println("Entrada no válida. Ingrese un valor numérico.");
+						        System.out.println("Introduzca el precio de la película:");
+						    }
+						}
+						salida.println(precio);
+					  //  leer.nextLine(); // Limpiar el búfer de nueva línea
 					   // opcion = menu();
 					    break;				    
 					case 5:// Salir de la aplicación
@@ -166,7 +199,6 @@ public class SocketCliente {
 		if (opcion<1 || opcion > 5) {
 			System.out.println("OPCION INCORRECTA");
 		}
-		
 		
 		return opcion;
 		
