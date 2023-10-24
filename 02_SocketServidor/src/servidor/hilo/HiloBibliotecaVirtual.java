@@ -107,29 +107,28 @@ public class HiloBibliotecaVirtual implements Runnable{
 					
 					//pongo la sincronizacion a la lista de peliculas para que solo un hilo a la vez pueda agregar una pelicula a la lista
 				    synchronized (peliculaLista) {
-				        System.out.println("ID de la película:");
-				        int id = Integer.parseInt(entradaBuffer.readLine());
-				        System.out.println("Título de la película:");
-				        String title = entradaBuffer.readLine();
-				        System.out.println("Director de la película:");
-				        String director = entradaBuffer.readLine();
-				        System.out.println("Precio de la película:");
-				        double precio = Double.parseDouble(entradaBuffer.readLine());
-				        Pelicula pelicula = new Pelicula(id, title, director, precio);
-				        // Agregar la película a la lista de manera segura
-				        if(peliculaLista.contains(pelicula)) {
-				        	salida.println("Pelicula no añadida, ya existe una pelicula con ese ID");
-				        	salida.println("FIN_BUSQUEDA");
-				        }else {
-				        	agregarPelicula(pelicula);
-				        	System.out.println("Película agregada correctamente.");
-					        salida.println("Película agregada correctamente: \n" + pelicula);
+					    System.out.println("ID de la película:");
+					    int id = Integer.parseInt(entradaBuffer.readLine());
+					    System.out.println("Título de la película:");
+					    String title = entradaBuffer.readLine();
+					    System.out.println("Director de la película:");
+					    String director = entradaBuffer.readLine();
+					    System.out.println("Precio de la película:");
+					    double precio = Double.parseDouble(entradaBuffer.readLine());
+					    Pelicula pelicula = new Pelicula(id, title, director, precio);
+					    // Agregar la película a la lista de manera segura
+					    if(peliculaLista.contains(pelicula)) {
+					    	salida.println("Pelicula no añadida, ya existe una pelicula con ese ID");
 					        salida.println("FIN_BUSQUEDA");
-				        }
+					    }else {
+					        agregarPelicula(pelicula);
+					        System.out.println("Película agregada correctamente.");
+						    salida.println("Película agregada correctamente: \n" + pelicula);
+						    salida.println("FIN_BUSQUEDA");
+					    }
 				        
-				}
-									
-				    
+				    }
+										    
 				}else if (opcion == 5) { // Salir de la aplicación
                     salida.println("OK");
                     System.out.println(hilo.getName() + " ha cerrado la comunicación");
