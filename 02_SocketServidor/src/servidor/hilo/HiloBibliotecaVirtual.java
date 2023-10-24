@@ -54,27 +54,32 @@ public class HiloBibliotecaVirtual implements Runnable{
 			while (continuar) {		
 				//trim() es un metodo que quita los espacios en blanco del principio
 				//y del final
+				System.out.println("Opcion introducida en el menu");
 				texto = entradaBuffer.readLine();
 				int opcion =  Integer.parseInt(texto);
 
 				if (opcion == 1) { // Consultar película por ID
+					System.out.println("Introduzca ID de la película");
 				    texto = entradaBuffer.readLine(); // Lee el ID
 				    int peliculaId = Integer.parseInt(texto);
 				    Pelicula pelicula = buscarPorId(peliculaId);
 				    salida.println(pelicula);
 				    salida.println("FIN_BUSQUEDA");
 				} else if (opcion == 2) { // Consultar película por título
+					System.out.println("Introduzca el título de la película:");
 				    String titulo = entradaBuffer.readLine(); // Lee el título
 				    Pelicula pelicula = buscarPorTitulo(titulo);
 				    salida.println(pelicula);
 				    salida.println("FIN_BUSQUEDA");
 				    
 				} else if (opcion == 3) { // Consultar películas por director
+					System.out.println("Introduzca el director de la película:");
 				    String director = entradaBuffer.readLine(); // Lee el nombre del director
 				    List<Pelicula> peliculas = buscarPeliculasPorDirector(director);
 
 				    if (peliculas.isEmpty()) {
-				        salida.println("No se encontraron películas para el director: " + director);
+				    	salida.println("No se encontraron películas para el director: " + director);
+				    	salida.println("FIN_BUSQUEDA");
 				    } else {
 				        // Envía cada película al cliente como una cadena, con un marcador especial para el final
 				        for (Pelicula pelicula : peliculas) {
@@ -86,8 +91,9 @@ public class HiloBibliotecaVirtual implements Runnable{
 				    }
 				}else if (opcion == 4) { // Añadir película
 				    // Solicitar todos los datos de la película al cliente
+					agregarPelicula();
 					//agregarPelicula();
-					System.out.println("Introduzca el ID de la película:");
+				/*	System.out.println("Introduzca el ID de la película:");
 				    int id = Integer.parseInt(entradaBuffer.readLine());
 				    System.out.println("Introduzca el título de la película:");
 				    String title = entradaBuffer.readLine();
@@ -95,17 +101,18 @@ public class HiloBibliotecaVirtual implements Runnable{
 				    String director = entradaBuffer.readLine();
 				    System.out.println("Introduzca el precio de la película:");
 				    double precio = Double.parseDouble(entradaBuffer.readLine());
-				    peliculaLista.add(new Pelicula(id, title, director, precio));				    
+				    Pelicula pelicula = new Pelicula(id, title, director, precio);
+				    peliculaLista.add(pelicula);				    
 				    System.out.println("Pelicula agregada correctamente.");
-				    //salida.println("FIN_BUSQUEDA");
+				    salida.println("Pelicula agregada correctamente: \n" + pelicula);
+				    salida.println("FIN_BUSQUEDA");
+				    */
 				}else if (opcion == 5) { // Salir de la aplicación
                     salida.println("OK");
                     System.out.println(hilo.getName() + " ha cerrado la comunicación");
                     continuar = false;
                 } 
-				
-				
-				
+						
             				
 			}
 			//Cerramos el socket
@@ -149,19 +156,40 @@ public class HiloBibliotecaVirtual implements Runnable{
         return peliculasPorDirector;
     }
 	//Requerimiento 3 metodo sincronizado para que los demas hilos no puedan entrar mientras otro lo usa
-	/*
-	public synchronized void agregarPelicula() {
-		 	
-		 	System.out.println("Introduzca el ID de la película:");
-		    int id = Integer.parseInt(entradaBuffer.readLine());
-		    System.out.println("Introduzca el título de la película:");
-		    String title = entradaBuffer.readLine();
-		    System.out.println("Introduzca el director de la película:");
-		    String director = entradaBuffer.readLine();
-		    System.out.println("Introduzca el precio de la película:");
-		    double precio = Double.parseDouble(entradaBuffer.readLine());
-		    peliculaLista.add(new Pelicula(id, title, director, precio));
-		    
-	 }*/
+	private synchronized void agregarPelicula() {
+        
+		try {
+			PrintStream salida = null;
+			InputStreamReader entrada = null;
+			//Salida del servidor al cliente
+			salida = new PrintStream(socketAlCliente.getOutputStream());
+			//Entrada del servidor al cliente
+			entrada = new InputStreamReader(socketAlCliente.getInputStream());
+			BufferedReader entradaBuffer = new BufferedReader(entrada);
+            System.out.println("Introduzca el ID de la película:");
+            int id = Integer.parseInt(entradaBuffer.readLine());
+            System.out.println("Introduzca el título de la película:");
+            String title = entradaBuffer.readLine();
+            System.out.println("Introduzca el director de la película:");
+            String director = entradaBuffer.readLine();
+            System.out.println("Introduzca el precio de la película:");
+            double precio = Double.parseDouble(entradaBuffer.readLine());
+            
+            Pelicula pelicula = new Pelicula(id, title, director, precio);
+            peliculaLista.add(pelicula);
+
+            System.out.println("Película agregada correctamente.");
+            salida.println("Pelicula agregada correctamente: \n" + pelicula);
+            salida.println("FIN_BUSQUEDA");
+        } catch (IOException e) {
+            System.err.println("Error de entrada/salida al agregar película");
+            e.printStackTrace();
+            // Puedes manejar la excepción de otra manera, si es necesario
+        } catch (NumberFormatException e) {
+            System.err.println("Error al convertir datos a números");
+            e.printStackTrace();
+            // Puedes manejar la excepción de otra manera, si es necesario
+        }
+    }
 
 }

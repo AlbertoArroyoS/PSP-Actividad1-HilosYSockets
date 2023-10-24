@@ -84,7 +84,7 @@ public class SocketCliente {
 					    double precio = leer.nextDouble();
 					    salida.println(precio);
 					    leer.nextLine(); // Limpiar el búfer de nueva línea
-					    opcion = menu();
+					   // opcion = menu();
 					    break;				    
 					case 5:// Salir de la aplicación
 						salida.println(String.valueOf(opcion));
