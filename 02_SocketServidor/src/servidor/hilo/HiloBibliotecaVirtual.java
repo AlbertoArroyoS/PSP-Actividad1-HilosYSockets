@@ -90,23 +90,29 @@ public class HiloBibliotecaVirtual implements Runnable{
 				        salida.println("FIN_BUSQUEDA"); // Marcador para indicar el final de la lista
 				    }
 				}else if (opcion == 4) { // Añadir película
-				    // Solicitar todos los datos de la película al cliente
-					agregarPelicula();
-					//agregarPelicula();
-				/*	System.out.println("Introduzca el ID de la película:");
-				    int id = Integer.parseInt(entradaBuffer.readLine());
-				    System.out.println("Introduzca el título de la película:");
-				    String title = entradaBuffer.readLine();
-				    System.out.println("Introduzca el director de la película:");
-				    String director = entradaBuffer.readLine();
-				    System.out.println("Introduzca el precio de la película:");
-				    double precio = Double.parseDouble(entradaBuffer.readLine());
-				    Pelicula pelicula = new Pelicula(id, title, director, precio);
-				    peliculaLista.add(pelicula);				    
-				    System.out.println("Pelicula agregada correctamente.");
-				    salida.println("Pelicula agregada correctamente: \n" + pelicula);
-				    salida.println("FIN_BUSQUEDA");
-				    */
+					
+					//pongo la sincronizacion a la lista de peliculas para que solo un hilo a la vez pueda agregar una pelicula a la lista
+				    synchronized (peliculaLista) {
+				        System.out.println("Introduzca el ID de la película:");
+				        int id = Integer.parseInt(entradaBuffer.readLine());
+				        System.out.println("Introduzca el título de la película:");
+				        String title = entradaBuffer.readLine();
+				        System.out.println("Introduzca el director de la película:");
+				        String director = entradaBuffer.readLine();
+				        System.out.println("Introduzca el precio de la película:");
+				        double precio = Double.parseDouble(entradaBuffer.readLine());
+				        Pelicula pelicula = new Pelicula(id, title, director, precio);
+				        
+				        // Agregar la película a la lista de manera segura
+				        agregarPelicula(pelicula);
+
+				        System.out.println("Película agregada correctamente.");
+				        salida.println("Película agregada correctamente: \n" + pelicula);
+				        salida.println("FIN_BUSQUEDA");
+				}
+				
+					
+				    
 				}else if (opcion == 5) { // Salir de la aplicación
                     salida.println("OK");
                     System.out.println(hilo.getName() + " ha cerrado la comunicación");
@@ -156,8 +162,22 @@ public class HiloBibliotecaVirtual implements Runnable{
         return peliculasPorDirector;
     }
 	//Requerimiento 3 metodo sincronizado para que los demas hilos no puedan entrar mientras otro lo usa
-	private synchronized void agregarPelicula() {
-        
+	private synchronized void agregarPelicula(Pelicula pelicula) {
+		/*	
+		try {
+			//Thread.sleep(10000);//parar 10 segundos
+			wait();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}*/
+		
+		peliculaLista.add(pelicula);
+		
+		
+		//parar 10 segundos
+		//notify();
+		
+        /*
 		try {
 			PrintStream salida = null;
 			InputStreamReader entrada = null;
@@ -189,7 +209,7 @@ public class HiloBibliotecaVirtual implements Runnable{
             System.err.println("Error al convertir datos a números");
             e.printStackTrace();
             // Puedes manejar la excepción de otra manera, si es necesario
-        }
+        }*/
     }
 
 }
