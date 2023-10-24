@@ -75,12 +75,7 @@ public class HiloBibliotecaVirtual implements Runnable{
 				if (opcion == 1) { // Consultar película por ID
 					consultarPeliculaPorId(salida, entradaBuffer);
 				} else if (opcion == 2) { // Consultar película por título
-					System.out.println("Título de la película:");
-				    String titulo = entradaBuffer.readLine(); // Lee el título
-				    Pelicula pelicula = buscarPorTitulo(titulo);
-				    salida.println(pelicula);
-				    salida.println("FIN_BUSQUEDA");
-				    
+					consultarPeliculaPorTitulo(salida, entradaBuffer);
 				} else if (opcion == 3) { // Consultar películas por director
 					System.out.println("Director de la película:");
 				    String director = entradaBuffer.readLine(); // Lee el nombre del director
@@ -218,11 +213,19 @@ public class HiloBibliotecaVirtual implements Runnable{
 	
 	 private void consultarPeliculaPorId(PrintStream salida, BufferedReader entradaBuffer) throws IOException {
 	        salida.println("ID de la película");
-	        int peliculaId = Integer.parseInt(entradaBuffer.readLine());
+	        int peliculaId = Integer.parseInt(entradaBuffer.readLine());//Pasamos a int el ID de entrada
 	        Pelicula pelicula = buscarPorId(peliculaId);
 	        salida.println(pelicula);
 	        salida.println("FIN_BUSQUEDA");
 	 }
+	 
+	 private void consultarPeliculaPorTitulo(PrintStream salida, BufferedReader entradaBuffer) throws IOException {
+	        salida.println("Título de la película:");
+	        String titulo = entradaBuffer.readLine();
+	        Pelicula pelicula = buscarPorTitulo(titulo);
+	        salida.println(pelicula);
+	        salida.println("FIN_BUSQUEDA");
+	    }
 	 
 	 
 	
