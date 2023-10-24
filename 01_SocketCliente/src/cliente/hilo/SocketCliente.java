@@ -8,6 +8,14 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
+/**
+ * Esta clase representa un cliente para la aplicación de biblioteca virtual que se comunica
+ * con el servidor a través de sockets. Creara un hilo nuevo por cada cliente nuevo
+ * 
+ * @author Alberto Arroyo Santofimia
+ * 
+ * @version v1.0
+ */
 
 public class SocketCliente {
 	
@@ -75,12 +83,12 @@ public class SocketCliente {
 						texto = sc.nextLine();
 						salida.println(texto);
 						break;
-					case 3: //Consultar película por título
+					case 3: //Consultar película por nombre del director
 						System.out.println("Introduzca nombre del director");
 						texto = sc.nextLine();
 						salida.println(texto);
 						break;
-					case 4://Añadir pelicula
+					case 4://Añadir pelicula nueva
 						System.out.println("Introduzca ID de la película:");
 						int id = 0;
 						boolean entradaValidaId2 = false;
@@ -141,6 +149,8 @@ public class SocketCliente {
 					while (!(respuesta = entradaBuffer.readLine()).equals("FIN_BUSQUEDA")) {
 				        // Procesa cada línea de película
 						
+						System.out.println(respuesta);
+						
 				    /*    String[] datosPelicula = respuesta.split(",");
 				        int id = Integer.parseInt(datosPelicula[0]);
 				        String titulo = datosPelicula[1];
@@ -150,7 +160,7 @@ public class SocketCliente {
 				        System.out.println("ID: " + id + ", Título: " + titulo + ", Director: " + director + ", Precio: " + precio);
 				        */
 						//peliculaInfo = entradaBuffer.readLine();
-						System.out.println(respuesta);
+						
 				    }
 				}				
 			}while(continuar);
@@ -170,6 +180,11 @@ public class SocketCliente {
 		System.out.println("CLIENTE: Fin del programa");
 
 	}
+	/**
+     *  El metodo menu() muestra un menú de opciones y permite al usuario seleccionar una.
+     *
+     * @return un numero entero, que representa la opción seleccionada por el usuario.
+     */
 	
 	//Menu inicial de la aplicacion
 	public static int menu() {

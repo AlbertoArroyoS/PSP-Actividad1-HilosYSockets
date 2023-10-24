@@ -9,6 +9,14 @@ import java.util.List;
 
 import javabean.Pelicula;
 
+/**
+ * Esta clase representa un hilo que maneja las solicitudes de clientes para la biblioteca virtual.
+ * 
+ * @author Alberto Arroyo Santofimia
+ * 
+ * @version v1.0
+ */
+
 //Este hilo va a entrar una opcion y devolvera segun la opcion marcada
 //La conexion se mantendra abierta hasta que el cliente mande la palabra
 //"FIN" al servidor.
@@ -23,7 +31,13 @@ public class HiloBibliotecaVirtual implements Runnable{
 	private Socket socketAlCliente;	
 	private List<Pelicula> peliculaLista;
 	
-
+	 /**
+     * Constructor para crear un nuevo hilo de manejo de cliente.
+     *
+     * @param socketAlCliente representa el socket del cliente.
+     * @param peliculas representa la lista de películas.
+     */
+	
 	public HiloBibliotecaVirtual(Socket socketAlCliente, List<Pelicula> peliculas) {
 		numCliente++;
 		hilo = new Thread(this, "Cliente_"+numCliente);
@@ -112,11 +126,9 @@ public class HiloBibliotecaVirtual implements Runnable{
 					        salida.println("Película agregada correctamente: \n" + pelicula);
 					        salida.println("FIN_BUSQUEDA");
 				        }
-
 				        
 				}
-				
-					
+									
 				    
 				}else if (opcion == 5) { // Salir de la aplicación
                     salida.println("OK");
@@ -138,6 +150,13 @@ public class HiloBibliotecaVirtual implements Runnable{
 		}
 		
 	}
+	/**
+     * El metodo buscarPorId() Busca una película por su ID en la lista de películas.
+     *
+     * @param id representa el ID de la película a buscar.
+     * @return objeto pelicula que representa la película encontrada o null si no se encuentra ninguna.
+     */
+	
 	//Metodo para encontrar la pelicula por id
 	private Pelicula buscarPorId(int id) {
         for (Pelicula pelicula : peliculaLista) {
@@ -147,15 +166,29 @@ public class HiloBibliotecaVirtual implements Runnable{
         }
         return null;
     }
+	/**
+     * El metodo buscarPorTitulo() Busca una película por su título en la lista de películas.
+     *
+     * @param titulo representa el título de la película a buscar.
+     * @return objeto pelicula que representa la película encontrada o null si no se encuentra ninguna.
+     */
+	
 	//Metodo para encontrar la pelicula por titulo
-	private Pelicula buscarPorTitulo(String title) {
+	private Pelicula buscarPorTitulo(String titulo) {
         for (Pelicula pelicula : peliculaLista) {
-            if (pelicula.getTitulo().equalsIgnoreCase(title)) {
+            if (pelicula.getTitulo().equalsIgnoreCase(titulo)) {
                 return pelicula;
             }
         }
         return null;
     }
+	/**
+     * El metodo buscarPeliculasPorDirector() busca películas por el nombre del director en la lista de películas.
+     *
+     * @param director representa el nombre del director de las películas a buscar.
+     * @return Una lista de películas que tienen el director especificado.
+     */
+	
 	//Requerimiento 2 devolver una lista con los directores
 	private List<Pelicula> buscarPeliculasPorDirector(String director) {
         List<Pelicula> peliculasPorDirector = new ArrayList<>();
@@ -166,6 +199,13 @@ public class HiloBibliotecaVirtual implements Runnable{
         }
         return peliculasPorDirector;
     }
+	
+	 /**
+     * El metodo agregarPelicula() agrega una película a la lista de películas de manera sincronizada.
+     *
+     * @param pelicula La película que se va a agregar.
+     */
+	
 	//Requerimiento 3 metodo sincronizado para que los demas hilos no puedan entrar mientras otro lo usa
 	private synchronized void agregarPelicula(Pelicula pelicula) {
 		/*	
@@ -176,45 +216,8 @@ public class HiloBibliotecaVirtual implements Runnable{
 			e.printStackTrace();
 		}*/
 		
-		peliculaLista.add(pelicula);
+		peliculaLista.add(pelicula);	
 		
-		
-		//parar 10 segundos
-		//notify();
-		
-        /*
-		try {
-			PrintStream salida = null;
-			InputStreamReader entrada = null;
-			//Salida del servidor al cliente
-			salida = new PrintStream(socketAlCliente.getOutputStream());
-			//Entrada del servidor al cliente
-			entrada = new InputStreamReader(socketAlCliente.getInputStream());
-			BufferedReader entradaBuffer = new BufferedReader(entrada);
-            System.out.println("Introduzca el ID de la película:");
-            int id = Integer.parseInt(entradaBuffer.readLine());
-            System.out.println("Introduzca el título de la película:");
-            String title = entradaBuffer.readLine();
-            System.out.println("Introduzca el director de la película:");
-            String director = entradaBuffer.readLine();
-            System.out.println("Introduzca el precio de la película:");
-            double precio = Double.parseDouble(entradaBuffer.readLine());
-            
-            Pelicula pelicula = new Pelicula(id, title, director, precio);
-            peliculaLista.add(pelicula);
-
-            System.out.println("Película agregada correctamente.");
-            salida.println("Pelicula agregada correctamente: \n" + pelicula);
-            salida.println("FIN_BUSQUEDA");
-        } catch (IOException e) {
-            System.err.println("Error de entrada/salida al agregar película");
-            e.printStackTrace();
-            // Puedes manejar la excepción de otra manera, si es necesario
-        } catch (NumberFormatException e) {
-            System.err.println("Error al convertir datos a números");
-            e.printStackTrace();
-            // Puedes manejar la excepción de otra manera, si es necesario
-        }*/
     }
 
 }
