@@ -79,38 +79,13 @@ public class HiloBibliotecaVirtual implements Runnable{
 				} else if (opcion == 3) { // Consultar películas por director
 					consultarPeliculasPorDirector(salida, entradaBuffer);
 				}else if (opcion == 4) { // Añadir película
-					
-					//pongo la sincronizacion a la lista de peliculas para que solo un hilo a la vez pueda agregar una pelicula a la lista
-				    synchronized (peliculaLista) {
-					    System.out.println("ID de la película:");
-					    int id = Integer.parseInt(entradaBuffer.readLine());
-					    System.out.println("Título de la película:");
-					    String title = entradaBuffer.readLine();
-					    System.out.println("Director de la película:");
-					    String director = entradaBuffer.readLine();
-					    System.out.println("Precio de la película:");
-					    double precio = Double.parseDouble(entradaBuffer.readLine());
-					    Pelicula pelicula = new Pelicula(id, title, director, precio);
-					    // Agregar la película a la lista de manera segura
-					    if(peliculaLista.contains(pelicula)) {
-					    	salida.println("Pelicula no añadida, ya existe una pelicula con ese ID");
-					        salida.println("FIN_BUSQUEDA");
-					    }else {
-					        agregarPelicula(pelicula);
-					        System.out.println("Película agregada correctamente.");
-						    salida.println("Película agregada correctamente: \n" + pelicula);
-						    salida.println("FIN_BUSQUEDA");
-					    }
-				        
-				    }
-										    
+					añadirPelicula(salida, entradaBuffer);						    
 				}else if (opcion == 5) { // Salir de la aplicación
                     salida.println("OK");
                     System.out.println(hilo.getName() + " ha cerrado la comunicación");
                     continuar = false;
                 } 
-						
-            				
+						            				
 			}
 			//Cerramos el socket
 			socketAlCliente.close();
@@ -181,6 +156,7 @@ public class HiloBibliotecaVirtual implements Runnable{
      */
 	
 	//Requerimiento 3 metodo sincronizado para que los demas hilos no puedan entrar mientras otro lo usa
+	
 	private synchronized void agregarPelicula(Pelicula pelicula) {
 		/*	
 		try {
@@ -190,8 +166,7 @@ public class HiloBibliotecaVirtual implements Runnable{
 			e.printStackTrace();
 		}*/
 		
-		peliculaLista.add(pelicula);	
-		
+		peliculaLista.add(pelicula);			
     }
 	
 	//************MODULARIZAR LAS OPCIONES************************
@@ -226,7 +201,35 @@ public class HiloBibliotecaVirtual implements Runnable{
 	            }
 	            salida.println("FIN_BUSQUEDA");
 	        }
+	   }
+	 
+	 private synchronized void añadirPelicula(PrintStream salida, BufferedReader entradaBuffer) throws IOException {
+	 
+		 	synchronized (peliculaLista) {
+	            salida.println("ID de la película:");
+	            int id = Integer.parseInt(entradaBuffer.readLine());
+	            salida.println("Título de la película:");
+	            String title = entradaBuffer.readLine();
+	            salida.println("Director de la película:");
+	            String director = entradaBuffer.readLine();
+	            salida.println("Precio de la película:");
+	            double precio = Double.parseDouble(entradaBuffer.readLine());
+	            Pelicula pelicula = new Pelicula(id, title, director, precio);
+
+	            if (peliculaLista.contains(pelicula)) {
+	                salida.println("Película no añadida, ya existe una película con ese ID");
+	                salida.println("FIN_BUSQUEDA");
+	            } else {
+	                //agregarPelicula(pelicula);
+	            	peliculaLista.add(pelicula);
+	                salida.println("Película agregada correctamente:\n" + pelicula);
+	                salida.println("FIN_BUSQUEDA");
+	            }
+	        }
+			
+			 
 	    }
+	 
 	 
 	 
 	
