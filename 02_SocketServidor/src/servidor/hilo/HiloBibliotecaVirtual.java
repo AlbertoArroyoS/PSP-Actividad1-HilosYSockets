@@ -159,26 +159,56 @@ public class HiloBibliotecaVirtual implements Runnable{
 	
 
 	
-	//************MODULARIZAR LAS OPCIONES************************
+	//************MODULAR LAS OPCIONES************************
+	
+	/**
+	 * El metodo consultarPeliculaPorId() consulta una película por su ID y la muestra en la salida.
+	 *
+	 * @param salida  representa la conexion de salida de informacion, la información que enviamos al cliente.
+	 * @param entradaBuffer representa la conexion de entrada de informacion, la información que vamos a recibir por parte del cliente.
+	 * @throws IOException Si ocurre un error de E/S durante la lectura de entrada.
+	 */
 	
 	 private void consultarPeliculaPorId(PrintStream salida, BufferedReader entradaBuffer) throws IOException {
-	        salida.println("ID de la película");
-	        int peliculaId = Integer.parseInt(entradaBuffer.readLine());//Pasamos a int el ID de entrada
+		 	//Espera a que entre desde el cliente el id de la pelicula
+		 	System.out.println("Esperando id de la pelicula del cliente");
+		 	salida.println("Pelicula:");
+	        int peliculaId = Integer.parseInt(entradaBuffer.readLine());//Parseamos a int el ID de entrada
 	        Pelicula pelicula = buscarPorId(peliculaId);
 	        salida.println(pelicula);
 	        salida.println("FIN_BUSQUEDA");
 	 }
 	 
+	 /**
+	  * El metodo consultarPeliculaPorTitulo() consulta una película por su título y la muestra en la salida.
+	  *
+	  * @param salida  representa la conexion de salida de informacion, la información que enviamos al cliente.
+	  * @param entradaBuffer representa la conexion de entrada de informacion, la información que vamos a recibir por parte del cliente.
+	  * @throws IOException Si ocurre un error de E/S durante la lectura de entrada.
+	  */
+	 
 	 private void consultarPeliculaPorTitulo(PrintStream salida, BufferedReader entradaBuffer) throws IOException {
-	        salida.println("Título de la película:");
-	        String titulo = entradaBuffer.readLine();
+	        //Espera a que entre desde el cliente el titulo de la pelicula
+		 	System.out.println("Esperando titulo de la pelicula del cliente");
+		 	salida.println("Pelicula:");
+		 	String titulo = entradaBuffer.readLine();
 	        Pelicula pelicula = buscarPorTitulo(titulo);
 	        salida.println(pelicula);
 	        salida.println("FIN_BUSQUEDA");
 	 }
 	 
+	 /**
+	  *  El metodo consultarPeliculasPorDirector() consulta películas por el nombre del director y las muestra en formato de lista.
+	  *
+	  * @param salida  representa la conexion de salida de informacion, la información que enviamos al cliente.
+	  * @param entradaBuffer representa la conexion de entrada de informacion, la información que vamos a recibir por parte del cliente.
+	  * @throws IOException Si ocurre un error de E/S durante la lectura de entrada.
+	  */
+	 
 	 private void consultarPeliculasPorDirector(PrintStream salida, BufferedReader entradaBuffer) throws IOException {
-	        salida.println("Director de la película:");
+		 	//Espera a que entre desde el cliente el nombre del director de la pelicula
+		 	System.out.println("Esperando nombre del director de la pelicula del cliente");
+		 	salida.println("Pelicula:");
 	        String director = entradaBuffer.readLine();
 	        List<Pelicula> peliculas = buscarPeliculasPorDirector(director);
 
@@ -193,10 +223,22 @@ public class HiloBibliotecaVirtual implements Runnable{
 	        }
 	   }
 	 
-	 private synchronized void agregarPelicula(PrintStream salida, BufferedReader entradaBuffer) throws IOException {
+	 /**
+	  * El metodo agregarPelicula() agrega una película a la lista de películas. Es un metodo sincronizado, bloquearemos el acceso
+	  * al resto de hilos el objeto que estamos creando y la lista de peliculas, para que los demás hilos no puedan agregar ninguna
+	  * pelicula hasta que el hilo que ha entrado primero no termine.
+	  *
+	  * @param salida  representa la conexion de salida de informacion, la información que enviamos al cliente.
+	  * @param entradaBuffer representa la conexion de entrada de informacion, la información que vamos a recibir por parte del cliente.
+	  * @throws IOException Si ocurre un error de E/S durante la lectura de entrada.
+	  */
 	 
+	 private synchronized void agregarPelicula(PrintStream salida, BufferedReader entradaBuffer) throws IOException {
+		//Espera a que entre desde el cliente los datos de la pelicula
+		//Sincronizo la lista de peliculas para que no puedan acceder otros hilos
+		 	System.out.println("Indroduciendo datos de pelicula nueva" + hilo.getName());
 		 	synchronized (peliculaLista) {
-	            salida.println("ID de la película:");
+	            salida.println("Datos pelicula:");
 	            int id = Integer.parseInt(entradaBuffer.readLine());
 	            salida.println("Título de la película:");
 	            String title = entradaBuffer.readLine();

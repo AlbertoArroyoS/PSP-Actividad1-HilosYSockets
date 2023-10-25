@@ -62,71 +62,18 @@ public class SocketCliente {
 				salida.println(String.valueOf(opcion));
 				//Segun la opcion elegida, guardamos la respuesta en un string y la enviamos al servidor
 				switch(opcion) {
-					case 1: // Consultar película por ID
-						System.out.println("Introduzca ID de la película:");
-						int peliculaId = 0;
-						boolean entradaValida = false;
-						//bucle para comprobar si hemos metido un numero y en caso de que no, se repita
-						while (!entradaValida) {
-						    try {
-						        peliculaId = Integer.parseInt(sc.nextLine());
-						        entradaValida = true; // Si son numeros los pasa a true
-						    } catch (NumberFormatException e) {
-						        System.out.println("Entrada no válida. Ingrese un número entero.");
-						        System.out.println("Introduzca ID de la película:");
-						    }
-						}
-						salida.println(peliculaId);
-						break;
-					case 2: //Consultar película por título
-						System.out.println("Introduzca título de la película");
-						texto = sc.nextLine();
-						salida.println(texto);
-						break;
-					case 3: //Consultar película por nombre del director
-						System.out.println("Introduzca nombre del director");
-						texto = sc.nextLine();
-						salida.println(texto);
-						break;
-					case 4://Añadir pelicula nueva
-						System.out.println("Introduzca ID de la película:");
-						int id = 0;
-						boolean entradaValidaId2 = false;
-						//bucle para comprobar si hemos metido un numero y en caso de que no, se repita
-						while (!entradaValidaId2) {
-						    try {
-						        id = Integer.parseInt(sc.nextLine());
-						        entradaValidaId2 = true; // Si son numeros los pasa a true
-						    } catch (NumberFormatException e) {
-						        System.out.println("Entrada no válida. Ingrese un número entero.");
-						        System.out.println("Introduzca ID de la película:");
-						    }
-						}
-					    salida.println(id);
-					  //  sc.nextLine(); // Limpiar el búfer de nueva línea
-					    System.out.println("Introduzca el título de la película:");
-					    String title = sc.nextLine();
-					    salida.println(title);
-					    System.out.println("Introduzca el director de la película:");
-					    String director = sc.nextLine();
-					    salida.println(director);
-					    System.out.println("Introduzca el precio de la película:");
-					    double precio = 0;
-						boolean entradaValidaPrecio = false;
-						//bucle para comprobar si hemos metido un numero y en caso de que no, se repita
-						while (!entradaValidaPrecio) {
-						    try {
-						        precio = Double.parseDouble(sc.nextLine());
-						        entradaValidaPrecio = true; // Establece la bandera en verdadera si la conversión tiene éxito
-						    } catch (NumberFormatException e) {
-						        System.out.println("Entrada no válida. Ingrese un valor numérico.");
-						        System.out.println("Introduzca el precio de la película:");
-						    }
-						}
-						salida.println(precio);
-					  //  leer.nextLine(); // Limpiar el búfer de nueva línea
-					   // opcion = menu();
-					    break;				    
+					case 1:
+	                    consultarPeliculaPorId(sc, salida);
+	                    break;
+	                case 2:
+	                    consultarPeliculaPorTitulo(sc, salida);
+	                    break;
+	                case 3:
+	                    consultarPeliculasPorDirector(sc, salida);
+	                    break;
+	                case 4:
+                    agregarPelicula(sc, salida);
+                    break;				    
 					case 5:// Salir de la aplicación
 						salida.println(String.valueOf(opcion));
 						break;
@@ -218,6 +165,107 @@ public class SocketCliente {
 		return opcion;
 		
 	}
+	
+	
+	//**********MODULAR LAS OPCIONES
+	
+	/**
+	 * El metodo consultarPeliculaPorId() consulta una película por su ID y envia la solicitud al servidor.
+	 *
+	 * @param sc  representa la entrada del usuario desde su teclado.
+	 * @param salida representa la conexion de salida de informacion, la informacion que enviamos al servidor.
+	 */
+	
+	private static void consultarPeliculaPorId(Scanner sc, PrintStream salida) {
+		System.out.println("Introduzca ID de la película:");
+		int peliculaId = 0;
+		boolean entradaValida = false;
+		//bucle para comprobar si hemos metido un numero y en caso de que no, se repita
+		while (!entradaValida) {
+		    try {
+		        peliculaId = Integer.parseInt(sc.nextLine());
+		        entradaValida = true; // Si son numeros los pasa a true
+		    } catch (NumberFormatException e) {
+		        System.out.println("Entrada no válida. Ingrese un número entero.");
+		        System.out.println("Introduzca ID de la película:");
+		    }
+		}
+		salida.println(peliculaId);
+    }
+	
+	/**
+	 * El metodo consultarPeliculaPorTitulo() consulta una pelicula por su titulo y envia la solicitud al servidor.
+	 *
+	 * @param sc  representa la entrada del usuario desde su teclado.
+	 * @param salida representa la conexion de salida de informacion, la informacion que enviamos al servidor.
+	 */
+	
+    private static void consultarPeliculaPorTitulo(Scanner sc, PrintStream salida) {
+    	System.out.println("Introduzca título de la película");
+		String texto = sc.nextLine();
+		salida.println(texto);
+    }
+    
+    /**
+     * El metodo consultarPeliculasPorDirector() consulta peliculas por el nombre del director y envia la solicitud al servidor.
+     *
+     * @param sc  representa la entrada del usuario desde su teclado.
+	 * @param salida representa la conexion de salida de informacion, la informacion que enviamos al servidor.
+	 */
+
+    private static void consultarPeliculasPorDirector(Scanner sc, PrintStream salida) {
+    	System.out.println("Introduzca nombre del director");
+		String texto = sc.nextLine();
+		salida.println(texto);
+    }
+    
+    /**
+     * El metodo agregarPelicula() agrega una película con detalles proporcionados por el usuario y envia la solicitud al servidor.
+     *
+     * @param sc  representa la entrada del usuario desde su teclado.
+	 * @param salida representa la conexion de salida de informacion, la informacion que enviamos al servidor.
+	 */
+
+    private static void agregarPelicula(Scanner sc, PrintStream salida) {
+    	System.out.println("Introduzca ID de la película:");
+		int id = 0;
+		boolean entradaValidaId2 = false;
+		//bucle para comprobar si hemos metido un numero y en caso de que no, se repita
+		while (!entradaValidaId2) {
+		    try {
+		        id = Integer.parseInt(sc.nextLine());
+		        entradaValidaId2 = true; // Si son numeros los pasa a true
+		    } catch (NumberFormatException e) {
+		        System.out.println("Entrada no válida. Ingrese un número entero.");
+		        System.out.println("Introduzca ID de la película:");
+		    }
+		}
+	    salida.println(id);
+	  //  sc.nextLine(); // Limpiar el búfer de nueva línea
+	    System.out.println("Introduzca el título de la película:");
+	    String title = sc.nextLine();
+	    salida.println(title);
+	    System.out.println("Introduzca el director de la película:");
+	    String director = sc.nextLine();
+	    salida.println(director);
+	    System.out.println("Introduzca el precio de la película:");
+	    double precio = 0;
+		boolean entradaValidaPrecio = false;
+		//bucle para comprobar si hemos metido un numero y en caso de que no, se repita
+		while (!entradaValidaPrecio) {
+		    try {
+		        precio = Double.parseDouble(sc.nextLine());
+		        entradaValidaPrecio = true; // Establece la bandera en verdadera si la conversión tiene éxito
+		    } catch (NumberFormatException e) {
+		        System.out.println("Entrada no válida. Ingrese un valor numérico.");
+		        System.out.println("Introduzca el precio de la película:");
+		    }
+		}
+		salida.println(precio);
+	  //  leer.nextLine(); // Limpiar el búfer de nueva línea
+	   // opcion = menu();
+    }
+
 	
 
 }
