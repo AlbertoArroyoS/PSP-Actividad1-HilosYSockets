@@ -128,7 +128,7 @@ public class SocketCliente {
 
 	}
 	/**
-     *  El metodo menu() muestra un menú de opciones y permite al usuario seleccionar una.
+     *  El metodo menu() muestra un menu de opciones y permite al usuario seleccionar una.
      *
      * @return un numero entero, que representa la opcion seleccionada por el usuario.
      */
