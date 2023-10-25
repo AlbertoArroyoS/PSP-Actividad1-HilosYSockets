@@ -172,7 +172,7 @@ public class HiloBibliotecaVirtual implements Runnable{
 	 private void consultarPeliculaPorId(PrintStream salida, BufferedReader entradaBuffer) throws IOException {
 		 	//Espera a que entre desde el cliente el id de la pelicula
 		 	System.out.println("Esperando id de la pelicula del cliente");
-		 	salida.println("Pelicula:");
+		 	//salida.println("Pelicula:");
 	        int peliculaId = Integer.parseInt(entradaBuffer.readLine());//Parseamos a int el ID de entrada
 	        Pelicula pelicula = buscarPorId(peliculaId);
 	        salida.println(pelicula);
@@ -190,7 +190,7 @@ public class HiloBibliotecaVirtual implements Runnable{
 	 private void consultarPeliculaPorTitulo(PrintStream salida, BufferedReader entradaBuffer) throws IOException {
 	        //Espera a que entre desde el cliente el titulo de la pelicula
 		 	System.out.println("Esperando titulo de la pelicula del cliente");
-		 	salida.println("Pelicula:");
+		 	//salida.println("Pelicula:");
 		 	String titulo = entradaBuffer.readLine();
 	        Pelicula pelicula = buscarPorTitulo(titulo);
 	        salida.println(pelicula);
@@ -208,7 +208,7 @@ public class HiloBibliotecaVirtual implements Runnable{
 	 private void consultarPeliculasPorDirector(PrintStream salida, BufferedReader entradaBuffer) throws IOException {
 		 	//Espera a que entre desde el cliente el nombre del director de la pelicula
 		 	System.out.println("Esperando nombre del director de la pelicula del cliente");
-		 	salida.println("Pelicula:");
+		 	//salida.println("Pelicula:");
 	        String director = entradaBuffer.readLine();
 	        List<Pelicula> peliculas = buscarPeliculasPorDirector(director);
 
@@ -236,24 +236,28 @@ public class HiloBibliotecaVirtual implements Runnable{
 	 private synchronized void agregarPelicula(PrintStream salida, BufferedReader entradaBuffer) throws IOException {
 		//Espera a que entre desde el cliente los datos de la pelicula
 		//Sincronizo la lista de peliculas para que no puedan acceder otros hilos
-		 	System.out.println("Indroduciendo datos de pelicula nueva" + hilo.getName());
+		 	System.out.println("Indroduciendo datos de pelicula nueva " + hilo.getName());
 		 	synchronized (peliculaLista) {
-	            salida.println("Datos pelicula:");
-	            int id = Integer.parseInt(entradaBuffer.readLine());
-	            salida.println("Título de la película:");
+	            //salida.println("Datos pelicula:");
+		 		System.out.println("Esperando id de la pelicula del cliente "+ hilo.getName());
+		 		int id = Integer.parseInt(entradaBuffer.readLine());
+		 		System.out.println("Esperando titulo de la pelicula del cliente "+ hilo.getName());
 	            String title = entradaBuffer.readLine();
-	            salida.println("Director de la película:");
+	            System.out.println("Esperando nombre del director de la pelicula del cliente "+ hilo.getName());
 	            String director = entradaBuffer.readLine();
 	            salida.println("Precio de la película:");
+	            System.out.println("Esperando precio de la pelicula "+ hilo.getName());
 	            double precio = Double.parseDouble(entradaBuffer.readLine());
 	            Pelicula pelicula = new Pelicula(id, title, director, precio);
 
 	            if (peliculaLista.contains(pelicula)) {
+	            	System.out.println("Película no añadida "+ hilo.getName() );
 	                salida.println("Película no añadida, ya existe una película con ese ID");
 	                salida.println("FIN_BUSQUEDA");
 	            } else {
 	                //agregarPelicula(pelicula);
 	            	peliculaLista.add(pelicula);
+	            	System.out.println("Película añadida correctamente "+ hilo.getName() );
 	                salida.println("Película agregada correctamente:\n" + pelicula);
 	                salida.println("FIN_BUSQUEDA");
 	            }
