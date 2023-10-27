@@ -10,20 +10,12 @@ import java.util.List;
 import javabean.Pelicula;
 
 /**
- * Esta clase representa un hilo que maneja las solicitudes de clientes para la biblioteca virtual.
+ * Clase que representa un hilo que maneja las solicitudes de clientes para la biblioteca virtual.
  * 
  * @author Alberto Arroyo Santofimia
  * 
- * @version v1.0
+ * @version v2.0
  */
-
-//Este hilo va a entrar una opcion y devolvera segun la opcion marcada
-//La conexion se mantendra abierta hasta que el cliente mande la palabra
-//"FIN" al servidor.
-
-//Recibe el socket que abre el servidor con el cliente y con el que
-//mantendra la conversacion
-
 public class HiloBibliotecaVirtual implements Runnable{
 	
 	private Thread hilo;
@@ -37,7 +29,6 @@ public class HiloBibliotecaVirtual implements Runnable{
      * @param socketAlCliente representa el socket del cliente.
      * @param peliculas representa la lista de peliculas.
      */
-	
 	public HiloBibliotecaVirtual(Socket socketAlCliente, List<Pelicula> peliculas) {
 		
 		numCliente++;
@@ -47,10 +38,21 @@ public class HiloBibliotecaVirtual implements Runnable{
 		hilo.start();
 	}
 
-
+	/**
+	 * Metodo que se ejecuta en un hilo de cliente para procesar las solicitudes entrantes
+	 * y la comunicación con un cliente de la biblioteca virtual.
+	 * Realiza las siguientes operaciones:
+	 * 1. Establece la comunicacion con el cliente.
+	 * 2. Procesa las solicitudes del cliente hasta que se recibe el comando de salida.
+	 * 3. Proporciona respuestas a las solicitudes del cliente utilizando la instancia de OpcionesHilo.
+	 * 4. Cierra la comunicacion con el cliente una vez que se completa la interaccion.
+	 *
+	 * @see OpcionesHilo
+	 */
 	@Override
 	public void run() {
 		String hiloNombre = hilo.getName();
+		//Creo el objeto para poder llamar a los metodos de OpcionesCliente
 		OpcionesHilo opHilo = new OpcionesHilo();
 		System.out.println("Estableciendo comunicacion con " + hiloNombre);
 		PrintStream salida = null;

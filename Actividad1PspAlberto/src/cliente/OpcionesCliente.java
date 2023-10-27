@@ -3,17 +3,22 @@ package cliente;
 import java.io.PrintStream;
 import java.util.Scanner;
 
+/**
+ * Clase que proporciona metodos para interactuar con el servidor de la biblioteca virtual
+ * y realizar operaciones relacionadas con la consulta y agregado de peliculas.
+ * 
+ * @author Alberto Arroyo Santofimia
+ * 
+ * @version v2.0
+ */
 public class OpcionesCliente {
 	
-
-	
 	/**
-	 * El metodo consultarPeliculaPorId() consulta una película por su ID y envia la solicitud al servidor.
+	 * Metodo que consulta una película por su ID y envia la solicitud al servidor.
 	 *
 	 * @param sc  representa la entrada del usuario desde su teclado.
 	 * @param salida representa la conexion de salida de informacion, la informacion que enviamos al servidor.
 	 */
-	
 	public void consultarPeliculaPorId(Scanner sc, PrintStream salida) {
 		System.out.println("Introduzca ID de la película:");
 		int peliculaId = 0;
@@ -32,12 +37,11 @@ public class OpcionesCliente {
     }
 	
 	/**
-	 * El metodo consultarPeliculaPorTitulo() consulta una pelicula por su titulo y envia la solicitud al servidor.
+	 * Metodo que consulta una pelicula por su titulo y envia la solicitud al servidor.
 	 *
 	 * @param sc  representa la entrada del usuario desde su teclado.
 	 * @param salida representa la conexion de salida de informacion, la informacion que enviamos al servidor.
 	 */
-	
     public void consultarPeliculaPorTitulo(Scanner sc, PrintStream salida) {
     	System.out.println("Introduzca título de la película");
 		String texto = sc.nextLine();
@@ -45,12 +49,11 @@ public class OpcionesCliente {
     }
     
     /**
-     * El metodo consultarPeliculasPorDirector() consulta peliculas por el nombre del director y envia la solicitud al servidor.
+     * Metodo que consulta peliculas por el nombre del director y envia la solicitud al servidor.
      *
      * @param sc  representa la entrada del usuario desde su teclado.
 	 * @param salida representa la conexion de salida de informacion, la informacion que enviamos al servidor.
 	 */
-
     public void consultarPeliculasPorDirector(Scanner sc, PrintStream salida) {
     	System.out.println("Introduzca nombre del director");
 		String texto = sc.nextLine();
@@ -58,12 +61,11 @@ public class OpcionesCliente {
     }
     
     /**
-     * El metodo agregarPelicula() agrega una película con detalles proporcionados por el usuario y envia la solicitud al servidor.
+     * Metodo que agrega una película con detalles proporcionados por el usuario y envia la solicitud al servidor.
      *
      * @param sc  representa la entrada del usuario desde su teclado.
 	 * @param salida representa la conexion de salida de informacion, la informacion que enviamos al servidor.
 	 */
-
     public void agregarPelicula(Scanner sc, PrintStream salida) {
     	System.out.println("Introduzca ID de la película:");
 		int id = 0;
@@ -101,7 +103,7 @@ public class OpcionesCliente {
 		}
 		salida.println(precio);
 	  //  leer.nextLine(); // Limpiar el búfer de nueva línea
-	   // opcion = menu();
+
     }
 
 }

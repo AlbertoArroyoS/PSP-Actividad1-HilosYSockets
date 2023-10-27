@@ -9,14 +9,14 @@ import java.util.List;
 import javabean.Pelicula;
 
 /**
- * La clase OpcionesHilo contiene métodos relacionados con la gestión de películas en un sistema. 
- * Proporciona funciones para buscar películas por ID, título o director, y agregar nuevas películas.
- * Además, incluye un método sincronizado para agregar películas de manera segura en entornos con hilos múltiples.
+ * Clase que contiene metodos relacionados con la gestion de peliculas en un sistema. 
+ * Proporciona metodos para buscar peliculas por ID, titulo o director, y agregar nuevas peliculas.
+ * Ademas, incluye un metodo sincronizado para agregar peliculas de manera segura en entornos con hilos multiples.
  * 
  * @author Alberto Arroyo Santofimia
- * @version 1.0
+ * 
+ * @version 2.0
  */
-
 public class OpcionesHilo {
 	
 
@@ -27,7 +27,7 @@ public class OpcionesHilo {
      *
      * @param id representa el ID de la pelicula a buscar.
      * @param peliculaLista representa la lista de peliculas en la que se realizara la busqueda.
-     * @return la película encontrada o null si no se encuentra ninguna película con el ID especificado.
+     * @return la pelicula encontrada o null si no se encuentra ninguna pelicula con el ID especificado.
      */
 	public Pelicula buscarPorId(int id, List<Pelicula> peliculaLista) {
         for (Pelicula pelicula : peliculaLista) {
@@ -44,9 +44,9 @@ public class OpcionesHilo {
 	/**
      * Metodo para buscar una película por su título en una lista de películas.
      *
-     * @param titulo representa el título de la película a buscar.
-     * @param peliculaLista representa la lista de películas en la que se realizará la búsqueda.
-     * @return la película encontrada o null si no se encuentra ninguna película con el título especificado.
+     * @param titulo representa el titulo de la pelicula a buscar.
+     * @param peliculaLista representa la lista de peliculas en la que se realizara la busqueda.
+     * @return la pelicula encontrada o null si no se encuentra ninguna pelicula con el titulo especificado.
      */
 	public Pelicula buscarPorTitulo(String titulo, List<Pelicula> peliculaLista) {
         for (Pelicula pelicula : peliculaLista) {
@@ -60,11 +60,11 @@ public class OpcionesHilo {
 	//Requerimiento 2 devolver una lista con los directores
 	
 	 /**
-     * Metodo para buscar películas por el nombre del director en una lista de películas.
+     * Metodo para buscar peliculas por el nombre del director en una lista de peliculas.
      *
-     * @param director     El nombre del director de las películas a buscar.
-     * @param peliculaLista La lista de películas en la que se realizará la búsqueda.
-     * @return una lista de películas que tienen al director especificado o No se encontraron películas para el director.
+     * @param director representa el nombre del director de las peliculas a buscar.
+     * @param peliculaLista representa la lista de peliculas en la que se realizara la búsqueda.
+     * @return una lista de peliculas que tienen al director especificado o No se encontraron peliculas para el director.
      */
 	public List<Pelicula> buscarPeliculasPorDirector(String director, List<Pelicula> peliculaLista) {
         List<Pelicula> peliculasPorDirector = new ArrayList<>();
@@ -77,12 +77,12 @@ public class OpcionesHilo {
     }
 	
 	 /**
-     * Metodo para consultar una película por su ID y envía la respuesta al cliente.
+     * Metodo para consultar una pelicula por su ID y envia la respuesta al cliente.
      *
      * @param salida representa el flujo de salida para enviar la respuesta al cliente.
-     * @param entradaBuffer representa el flujo de entrada para recibir el ID de la película del cliente.
-     * @param peliculaLista representa la lista de películas en la que se buscará la película.
-     * @throws IOException si ocurre un error de E/S durante la operación.
+     * @param entradaBuffer representa el flujo de entrada para recibir el ID de la pelicula del cliente.
+     * @param peliculaLista representa la lista de peliculas en la que se buscara la pelicula.
+     * @throws IOException si ocurre un error de E/S durante la operacion.
      */
 	 public void consultarPeliculaPorId(PrintStream salida, BufferedReader entradaBuffer, List<Pelicula> peliculaLista) throws IOException {
 		 	//Espera a que entre desde el cliente el id de la pelicula
@@ -94,12 +94,12 @@ public class OpcionesHilo {
 	        salida.println("FIN_BUSQUEDA");
 	 }
 	 /**
-	 * Metodo para consultar una película por su título y envía la respuesta al cliente.
+	 * Metodo para consultar una pelicula por su titulo y envia la respuesta al cliente.
 	 *
 	 * @param salida representa el flujo de salida para enviar la respuesta al cliente.
-	 * @param entradaBuffer representa el flujo de entrada para recibir el título de la película del cliente.
-	 * @param peliculaLista representa la lista de películas en la que se buscará la película.
-	 * @throws IOException si ocurre un error de E/S durante la operación.
+	 * @param entradaBuffer representa el flujo de entrada para recibir el titulo de la pelicula del cliente.
+	 * @param peliculaLista representa la lista de peliculas en la que se buscara la pelicula.
+	 * @throws IOException si ocurre un error de E/S durante la operacion.
 	  */	 
 	 public void consultarPeliculaPorTitulo(PrintStream salida, BufferedReader entradaBuffer, List<Pelicula> peliculaLista) throws IOException {
 	        //Espera a que entre desde el cliente el titulo de la pelicula
@@ -112,12 +112,12 @@ public class OpcionesHilo {
 	 }
 	 
 	 /**
-	 * Metodo para consultar películas por el nombre del director y envía la respuesta al cliente.
+	 * Metodo para consultar peliculas por el nombre del director y envia la respuesta al cliente.
 	 *
 	 * @param salida representa el flujo de salida para enviar la respuesta al cliente.
 	 * @param entradaBuffer representa el flujo de entrada para recibir el nombre del director del cliente.
-	 * @param peliculaLista representa la lista de películas en la que se buscarán las películas.
-	 * @throws IOException si ocurre un error de E/S durante la operación.
+	 * @param peliculaLista representa la lista de peliculas en la que se buscaran las películas.
+	 * @throws IOException si ocurre un error de E/S durante la operacion.
 	 */
 	 public void consultarPeliculasPorDirector(PrintStream salida, BufferedReader entradaBuffer, List<Pelicula> peliculaLista) throws IOException {
 		 	//Espera a que entre desde el cliente el nombre del director de la pelicula
@@ -140,13 +140,13 @@ public class OpcionesHilo {
 	//Requerimiento 3 metodo sincronizado para que los demas hilos no puedan entrar mientras otro lo usa
 	    
 	 /**
-	 * Metodo para agregar una nueva película de forma sincronizada y envía la respuesta al cliente.
+	 * Metodo para agregar una nueva pelicula de forma sincronizada y envia la respuesta al cliente.
 	 *
 	 * @param salida representa el flujo de salida para enviar la respuesta al cliente.
-	 * @param entradaBuffer representa el flujo de entrada para recibir los datos de la película del cliente.
-	 * @param peliculaLista representa la lista de películas en la que se agregará la nueva película.
-	 * @param hiloNombre representa el nombre del hilo que realiza la operación.
-	 * @throws IOException si ocurre un error de E/S durante la operación.
+	 * @param entradaBuffer representa el flujo de entrada para recibir los datos de la pelicula del cliente.
+	 * @param peliculaLista representa la lista de películas en la que se agregara la nueva pelicula.
+	 * @param hiloNombre representa el nombre del hilo que realiza la operacion.
+	 * @throws IOException si ocurre un error de E/S durante la operacion.
 	 */	 
 	 public synchronized void agregarPelicula(PrintStream salida, BufferedReader entradaBuffer, List<Pelicula> peliculaLista, String hiloNombre) throws IOException {
 		//Espera a que entre desde el cliente los datos de la pelicula
@@ -170,7 +170,6 @@ public class OpcionesHilo {
 	                salida.println("Película no añadida, ya existe una película con ese ID");
 	                salida.println("FIN_BUSQUEDA");
 	            } else {
-	                //agregarPelicula(pelicula);
 	            	peliculaLista.add(pelicula);
 	            	System.out.println("Película añadida correctamente "+ hiloNombre);
 	                salida.println("Película agregada correctamente:\n" + pelicula);

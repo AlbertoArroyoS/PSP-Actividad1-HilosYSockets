@@ -1,5 +1,5 @@
 package cliente;
-import cliente.OpcionesCliente;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,14 +10,13 @@ import java.net.UnknownHostException;
 import java.util.Scanner;
 
 /**
- * Esta clase representa un cliente para la aplicacion de biblioteca virtual que se comunica
+ * Clase que representa un cliente para la aplicacion de biblioteca virtual que se comunica
  * con el servidor a traves de sockets. Creara un hilo nuevo por cada cliente nuevo
  * 
  * @author Alberto Arroyo Santofimia
  * 
- * @version v1.0
+ * @version v2.0
  */
-
 public class SocketCliente {
 	
 	// IP y Puerto a la que nos vamos a conectar
@@ -30,7 +29,7 @@ public class SocketCliente {
 	}
 
 	public static void main(String[] args) {
-		
+		//Creo el objeto para poder llamar a los metodos de OpcionesCliente
 		OpcionesCliente op = new OpcionesCliente();
 		
 		System.out.println("-----------------------------------");
@@ -52,7 +51,6 @@ public class SocketCliente {
 			
 			PrintStream salida = new PrintStream(socketAlServidor.getOutputStream());
 			
-			String texto = "";
 			boolean continuar = true;
 			do {
 				
@@ -102,15 +100,17 @@ public class SocketCliente {
 						
 						System.out.println(respuesta);
 						
-				    /*    String[] datosPelicula = respuesta.split(",");
+				    /*    
+				     	** Otra forma de sacar la informacion de las peliculas mas compleja
+				      	String[] datosPelicula = respuesta.split(",");
 				        int id = Integer.parseInt(datosPelicula[0]);
 				        String titulo = datosPelicula[1];
 				        String director = datosPelicula[2];
 				        double precio = Double.parseDouble(datosPelicula[3]);
 
 				        System.out.println("ID: " + id + ", Título: " + titulo + ", Director: " + director + ", Precio: " + precio);
-				        */
-						//peliculaInfo = entradaBuffer.readLine();
+				        //peliculaInfo = entradaBuffer.readLine();
+				    */
 						
 				    }
 				}				
