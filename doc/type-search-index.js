@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"servidor.hilo","l":"HiloBibliotecaVirtual"},{"p":"javabean","l":"Pelicula"},{"p":"cliente.hilo","l":"SocketCliente"},{"p":"servidor.hilo","l":"SocketServidor"}];updateSearchResults();

@@ -52,7 +52,7 @@ public class HiloBibliotecaVirtual implements Runnable{
 	@Override
 	public void run() {
 		String hiloNombre = hilo.getName();
-		//Creo el objeto para poder llamar a los metodos de OpcionesCliente
+		//Creo la instancia de la clase OpcionesHilo para poder llamar a los metodos
 		OpcionesHilo opHilo = new OpcionesHilo();
 		System.out.println("Estableciendo comunicacion con " + hiloNombre);
 		PrintStream salida = null;

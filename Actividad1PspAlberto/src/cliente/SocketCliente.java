@@ -29,7 +29,7 @@ public class SocketCliente {
 	}
 
 	public static void main(String[] args) {
-		//Creo el objeto para poder llamar a los metodos de OpcionesCliente
+		//Creo la instancia de la clase OpcionesCliente para poder llamar a los metodos
 		OpcionesCliente op = new OpcionesCliente();
 		
 		System.out.println("-----------------------------------");
