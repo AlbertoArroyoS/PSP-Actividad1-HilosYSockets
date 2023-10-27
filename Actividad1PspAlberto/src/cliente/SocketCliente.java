@@ -23,7 +23,7 @@ public class SocketCliente {
 	public static final int PUERTO = 3333;
 	public static final String IP_SERVER = "localhost";
 	private static Scanner leer;
-		
+	//Para poder leer las opciones del menu	que estan en un metodo estatico
 	static {
 			leer = new Scanner(System.in);
 	}
@@ -131,13 +131,14 @@ public class SocketCliente {
 		System.out.println("CLIENTE: Fin del programa");
 
 	}
+	
+	//Menu inicial de la aplicacion
+	
 	/**
      *  El metodo menu() muestra un menu de opciones y permite al usuario seleccionar una.
      *
      * @return un numero entero, que representa la opcion seleccionada por el usuario.
      */
-	
-	//Menu inicial de la aplicacion
 	public static int menu() {
 			
 		int opcion = 0;
@@ -166,8 +167,7 @@ public class SocketCliente {
 			System.out.println("OPCION INCORRECTA");
 		}
 		
-		return opcion;
-		
+		return opcion;	
 	}
 	
 }
