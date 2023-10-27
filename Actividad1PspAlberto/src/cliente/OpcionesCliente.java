@@ -3,7 +3,7 @@ package cliente;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-public class ClienteOpciones {
+public class OpcionesCliente {
 	
 	//**********MODULAR LAS OPCIONES
 	

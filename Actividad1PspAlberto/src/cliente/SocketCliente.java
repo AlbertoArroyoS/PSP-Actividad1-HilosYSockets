@@ -1,5 +1,5 @@
 package cliente;
-import cliente.ClienteOpciones;
+import cliente.OpcionesCliente;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -24,13 +24,15 @@ public class SocketCliente {
 	public static final int PUERTO = 3333;
 	public static final String IP_SERVER = "localhost";
 	private static Scanner leer;
-	static ClienteOpciones op = new ClienteOpciones();
 		
 	static {
 			leer = new Scanner(System.in);
 	}
 
 	public static void main(String[] args) {
+		
+		OpcionesCliente op = new OpcionesCliente();
+		
 		System.out.println("-----------------------------------");
 		System.out.println("   APLICACION CLIENTE BIBLIOTECA   ");
 		System.out.println("-----------------------------------");
