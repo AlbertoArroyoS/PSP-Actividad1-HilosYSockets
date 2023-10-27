@@ -10,13 +10,7 @@ import javabean.Pelicula;
 
 public class OpcionesHilo {
 	
-	/**
-     * El metodo buscarPorId() Busca una pelicula por su ID en la lista de peliculas.
-     *
-     * @param id representa el ID de la pelicula a buscar.
-     * @return objeto pelicula que representa la pelicula encontrada o null si no se encuentra ninguna.
-     */
-	
+
 	//Metodo para encontrar la pelicula por id
 	public Pelicula buscarPorId(int id, List<Pelicula> peliculaLista) {
         for (Pelicula pelicula : peliculaLista) {
@@ -26,12 +20,7 @@ public class OpcionesHilo {
         }
         return null;
     }
-	/**
-     * El metodo buscarPorTitulo() Busca una pelicula por su titulo en la lista de peliculas.
-     *
-     * @param titulo representa el titulo de la pelicula a buscar.
-     * @return objeto pelicula que representa la pelicula encontrada o null si no se encuentra ninguna.
-     */
+
 	
 	//Metodo para encontrar la pelicula por titulo
 	public Pelicula buscarPorTitulo(String titulo, List<Pelicula> peliculaLista) {
@@ -42,12 +31,8 @@ public class OpcionesHilo {
         }
         return null;
     }
-	/**
-     * El metodo buscarPeliculasPorDirector() busca peliculas por el nombre del director en la lista de películas.
-     *
-     * @param director representa el nombre del director de las peliculas a buscar.
-     * @return Una lista de peliculas que tienen el director especificado.
-     */
+
+	
 	
 	//Requerimiento 2 devolver una lista con los directores
 	public List<Pelicula> buscarPeliculasPorDirector(String director, List<Pelicula> peliculaLista) {
@@ -60,25 +45,7 @@ public class OpcionesHilo {
         return peliculasPorDirector;
     }
 	
-	 /**
-     * El metodo agregarPelicula() agrega una pelicula a la lista de películas de manera sincronizada.
-     *
-     * @param pelicula La pelicula que se va a agregar.
-     */
-	
-	//Requerimiento 3 metodo sincronizado para que los demas hilos no puedan entrar mientras otro lo usa
-	
 
-	
-	//************MODULAR LAS OPCIONES************************
-	
-	/**
-	 * El metodo consultarPeliculaPorId() consulta una película por su ID y la muestra en la salida.
-	 *
-	 * @param salida  representa la conexion de salida de informacion, la información que enviamos al cliente.
-	 * @param entradaBuffer representa la conexion de entrada de informacion, la información que vamos a recibir por parte del cliente.
-	 * @throws IOException Si ocurre un error de E/S durante la lectura de entrada.
-	 */
 	
 	 public void consultarPeliculaPorId(PrintStream salida, BufferedReader entradaBuffer, List<Pelicula> peliculaLista) throws IOException {
 		 	//Espera a que entre desde el cliente el id de la pelicula
@@ -90,13 +57,7 @@ public class OpcionesHilo {
 	        salida.println("FIN_BUSQUEDA");
 	 }
 	 
-	 /**
-	  * El metodo consultarPeliculaPorTitulo() consulta una película por su título y la muestra en la salida.
-	  *
-	  * @param salida  representa la conexion de salida de informacion, la información que enviamos al cliente.
-	  * @param entradaBuffer representa la conexion de entrada de informacion, la información que vamos a recibir por parte del cliente.
-	  * @throws IOException Si ocurre un error de E/S durante la lectura de entrada.
-	  */
+
 	 
 	 public void consultarPeliculaPorTitulo(PrintStream salida, BufferedReader entradaBuffer, List<Pelicula> peliculaLista) throws IOException {
 	        //Espera a que entre desde el cliente el titulo de la pelicula
@@ -108,13 +69,7 @@ public class OpcionesHilo {
 	        salida.println("FIN_BUSQUEDA");
 	 }
 	 
-	 /**
-	  *  El metodo consultarPeliculasPorDirector() consulta películas por el nombre del director y las muestra en formato de lista.
-	  *
-	  * @param salida  representa la conexion de salida de informacion, la información que enviamos al cliente.
-	  * @param entradaBuffer representa la conexion de entrada de informacion, la información que vamos a recibir por parte del cliente.
-	  * @throws IOException Si ocurre un error de E/S durante la lectura de entrada.
-	  */
+
 	 
 	 public void consultarPeliculasPorDirector(PrintStream salida, BufferedReader entradaBuffer, List<Pelicula> peliculaLista) throws IOException {
 		 	//Espera a que entre desde el cliente el nombre del director de la pelicula
@@ -134,15 +89,7 @@ public class OpcionesHilo {
 	        }
 	   }
 	 
-	 /**
-	  * El metodo agregarPelicula() agrega una película a la lista de películas. Es un metodo sincronizado, bloquearemos el acceso
-	  * al resto de hilos el objeto que estamos creando y la lista de peliculas, para que los demás hilos no puedan agregar ninguna
-	  * pelicula hasta que el hilo que ha entrado primero no termine.
-	  *
-	  * @param salida  representa la conexion de salida de informacion, la información que enviamos al cliente.
-	  * @param entradaBuffer representa la conexion de entrada de informacion, la información que vamos a recibir por parte del cliente.
-	  * @throws IOException Si ocurre un error de E/S durante la lectura de entrada.
-	  */
+	//Requerimiento 3 metodo sincronizado para que los demas hilos no puedan entrar mientras otro lo usa
 	 
 	 public synchronized void agregarPelicula(PrintStream salida, BufferedReader entradaBuffer, List<Pelicula> peliculaLista, String hiloNombre) throws IOException {
 		//Espera a que entre desde el cliente los datos de la pelicula
