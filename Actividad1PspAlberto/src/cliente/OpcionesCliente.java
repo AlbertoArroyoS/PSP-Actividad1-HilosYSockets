@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class OpcionesCliente {
 	
-	//**********MODULAR LAS OPCIONES
+
 	
 	/**
 	 * El metodo consultarPeliculaPorId() consulta una película por su ID y envia la solicitud al servidor.
