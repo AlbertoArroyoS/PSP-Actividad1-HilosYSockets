@@ -42,7 +42,7 @@ public class OpcionesHilo {
 	//Metodo para encontrar la pelicula por titulo
 	
 	/**
-     * Metodo para buscar una película por su título en una lista de películas.
+     * Metodo para buscar una pelicula por su título en una lista de peliculas.
      *
      * @param titulo representa el titulo de la pelicula a buscar.
      * @param peliculaLista representa la lista de peliculas en la que se realizara la busqueda.
@@ -144,7 +144,7 @@ public class OpcionesHilo {
 	 *
 	 * @param salida representa el flujo de salida para enviar la respuesta al cliente.
 	 * @param entradaBuffer representa el flujo de entrada para recibir los datos de la pelicula del cliente.
-	 * @param peliculaLista representa la lista de películas en la que se agregara la nueva pelicula.
+	 * @param peliculaLista representa la lista de peliculas en la que se agregara la nueva pelicula.
 	 * @param hiloNombre representa el nombre del hilo que realiza la operacion.
 	 * @throws IOException si ocurre un error de E/S durante la operacion.
 	 */	 

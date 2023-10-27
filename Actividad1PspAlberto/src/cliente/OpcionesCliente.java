@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class OpcionesCliente {
 	
 	/**
-	 * Metodo que consulta una película por su ID y envia la solicitud al servidor.
+	 * Metodo que consulta una pelicula por su ID y envia la solicitud al servidor.
 	 *
 	 * @param sc  representa la entrada del usuario desde su teclado.
 	 * @param salida representa la conexion de salida de informacion, la informacion que enviamos al servidor.
@@ -61,7 +61,7 @@ public class OpcionesCliente {
     }
     
     /**
-     * Metodo que agrega una película con detalles proporcionados por el usuario y envia la solicitud al servidor.
+     * Metodo que agrega una pelicula con detalles proporcionados por el usuario y envia la solicitud al servidor.
      *
      * @param sc  representa la entrada del usuario desde su teclado.
 	 * @param salida representa la conexion de salida de informacion, la informacion que enviamos al servidor.
