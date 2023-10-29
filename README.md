@@ -2,7 +2,7 @@
 
 AE-1. Hilos y Sockets - Programación de Servicios y Procesos 
 
-Alberto Arroyo Santofimia
+- Alberto Arroyo Santofimia.
 
 
 **Requerimiento 1**
