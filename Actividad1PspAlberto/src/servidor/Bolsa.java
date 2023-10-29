@@ -17,7 +17,7 @@ import javabean.Pelicula;
  * @version 2.1
  */
 public class Bolsa {
-		//Número máximo objetos Pelicula que tiene la bolsa
+		//Numero maximo objetos Pelicula que tiene la bolsa
 		public final static int MAX_ELEMENTOS = 1;
 		
 		//Una cola es ideal para implementar este ejemplo
@@ -31,7 +31,7 @@ public class Bolsa {
 	     * @return la pelicula obtenida de la bolsa.
 	     */		
 		public synchronized Pelicula obtenerPeliculaBolsa(){
-			//Si la bolsa está vacia no debemos intentar sacar ningún elemento más
+			//Si la bolsa está vacia no debemos intentar sacar ningun elemento mas
 			//por lo que esperamos a que otro hilo ponga un elemento pelicula
 			while(bolsa.size() == 0){
 				try {
@@ -52,8 +52,8 @@ public class Bolsa {
 	     *
 	     * @param representa pelicula la pelicula que se va a agregar a la bolsa.
 	     */
-		public synchronized void añadirPeliculaBolsa(Pelicula pelicula){
-			//Si la bolsa está llena no debemos introducir ninguna pelicula más
+		public synchronized void addPeliculaBolsa(Pelicula pelicula){
+			//Si la bolsa esta llena no debemos introducir ninguna pelicula mas
 			//por lo que esperamos a que otro hilo libere espacio
 			while(bolsa.size() == MAX_ELEMENTOS){//1
 				try {
@@ -64,7 +64,7 @@ public class Bolsa {
 			}
 			//Añadimos un elemento a la cola
 			bolsa.offer(pelicula);
-			//Despertamos a un hilo que esté en estado 'wait'
+			//Despertamos a un hilo que este en estado 'wait'
 			notify();
 		}
 }

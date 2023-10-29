@@ -175,7 +175,7 @@ public class OpcionesHilo {
 	            //Si no existe ese ID
 	            else {
 	            	//Primero añadimos pelicula a la bolsa de peliculas, que solo puede admitir 1 
-		            bolsa.añadirPeliculaBolsa(pelicula);
+		            bolsa.addPeliculaBolsa(pelicula);
 		            //Sacamos la ultima pelicula de la bolsa metidas
 		            Pelicula peliculaBolsa = bolsa.obtenerPeliculaBolsa();
 		            //añadimos la pelicula a la lista
