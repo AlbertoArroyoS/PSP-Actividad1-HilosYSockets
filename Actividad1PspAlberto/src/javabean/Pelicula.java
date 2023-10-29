@@ -84,7 +84,7 @@ public class Pelicula {
 	}
 
 	 /**
-     * Devuelve una representación de cadena de la pelicula que incluye su ID, titulo, director y precio.
+     * Devuelve una representacion de cadena de la pelicula que incluye su ID, titulo, director y precio.
      *
      * @return Una cadena con los detalles de la pelicula.
      */
