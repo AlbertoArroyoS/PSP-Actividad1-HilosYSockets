@@ -146,9 +146,10 @@ public class OpcionesHilo {
 	 * @param entradaBuffer representa el flujo de entrada para recibir los datos de la pelicula del cliente.
 	 * @param peliculaLista representa la lista de peliculas en la que se agregara la nueva pelicula.
 	 * @param hiloNombre representa el nombre del hilo que realiza la operacion.
+	 * @param bolsa representa la bolsa de peliculas en las que solo puede haber 1 antes de pasar a la lista.
 	 * @throws IOException si ocurre un error de E/S durante la operacion.
 	 */	 
-	 public synchronized void agregarPelicula(PrintStream salida, BufferedReader entradaBuffer, List<Pelicula> peliculaLista, String hiloNombre) throws IOException {
+	 public synchronized void agregarPelicula(PrintStream salida, BufferedReader entradaBuffer, List<Pelicula> peliculaLista, String hiloNombre, Bolsa bolsa) throws IOException {
 		//Espera a que entre desde el cliente los datos de la pelicula
 		//Sincronizo la lista de peliculas para que no puedan acceder otros hilos
 		 	System.out.println("Indroduciendo datos de pelicula nueva " + hiloNombre);
@@ -164,13 +165,21 @@ public class OpcionesHilo {
 	            System.out.println("Esperando precio de la pelicula "+ hiloNombre);
 	            double precio = Double.parseDouble(entradaBuffer.readLine());
 	            Pelicula pelicula = new Pelicula(id, title, director, precio);
-
+	            
+	            //Comprobamos si ya existe una pelicula con ese id en la lista
 	            if (peliculaLista.contains(pelicula)) {
 	            	System.out.println("Película no añadida "+ hiloNombre );
 	                salida.println("Película no añadida, ya existe una película con ese ID");
 	                salida.println("FIN_BUSQUEDA");
-	            } else {
-	            	peliculaLista.add(pelicula);
+	            } 
+	            //Si no existe ese ID
+	            else {
+	            	//Primero añadimos pelicula a la bolsa de peliculas, que solo puede admitir 1 
+		            bolsa.añadirPeliculaBolsa(pelicula);
+		            //Sacamos la ultima pelicula de la bolsa metidas
+		            Pelicula peliculaBolsa = bolsa.obtenerPeliculaBolsa();
+		            //añadimos la pelicula a la lista
+	            	peliculaLista.add(peliculaBolsa);
 	            	System.out.println("Película añadida correctamente "+ hiloNombre);
 	                salida.println("Película agregada correctamente:\n" + pelicula);
 	                salida.println("FIN_BUSQUEDA");

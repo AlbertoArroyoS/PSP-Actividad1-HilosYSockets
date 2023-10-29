@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.List;
 
 import javabean.Pelicula;
@@ -22,19 +21,22 @@ public class HiloBibliotecaVirtual implements Runnable{
 	private static int numCliente = 0;
 	private Socket socketAlCliente;	
 	private List<Pelicula> peliculaLista;
+	private Bolsa bolsa;
 	
 	 /**
      * Constructor para crear un nuevo hilo de manejo de cliente.
      *
      * @param socketAlCliente representa el socket del cliente.
      * @param peliculas representa la lista de peliculas.
+     * @param bolsa representa la bolsa de peliculas en las que solo puede haber 1 antes de pasar a la lista.
      */
-	public HiloBibliotecaVirtual(Socket socketAlCliente, List<Pelicula> peliculas) {
+	public HiloBibliotecaVirtual(Socket socketAlCliente, List<Pelicula> peliculas, Bolsa bolsa) {
 		
 		numCliente++;
 		hilo = new Thread(this, "Cliente_"+numCliente);
 		this.socketAlCliente = socketAlCliente;
 		this.peliculaLista = peliculas;
+		this.bolsa = bolsa;
 		hilo.start();
 	}
 
@@ -52,6 +54,7 @@ public class HiloBibliotecaVirtual implements Runnable{
 	@Override
 	public void run() {
 		String hiloNombre = hilo.getName();
+		bolsa = new Bolsa();
 		//Creo la instancia de la clase OpcionesHilo para poder llamar a los metodos
 		OpcionesHilo opHilo = new OpcionesHilo();
 		System.out.println("Estableciendo comunicacion con " + hiloNombre);
@@ -84,7 +87,7 @@ public class HiloBibliotecaVirtual implements Runnable{
 				} else if (opcion == 3) { // Consultar películas por director
 					opHilo.consultarPeliculasPorDirector(salida, entradaBuffer, peliculaLista);
 				}else if (opcion == 4) { // Añadir película
-					opHilo.agregarPelicula(salida, entradaBuffer, peliculaLista, hiloNombre);						    
+					opHilo.agregarPelicula(salida, entradaBuffer, peliculaLista, hiloNombre, bolsa);						    
 				}else if (opcion == 5) { // Salir de la aplicación
                     salida.println("OK");
                     System.out.println(hilo.getName() + " ha cerrado la comunicación");

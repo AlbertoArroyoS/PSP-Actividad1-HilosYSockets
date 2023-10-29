@@ -21,7 +21,7 @@ public class SocketServidor {
 	
 	public static final int PUERTO = 3333;
 	private static List<Pelicula> biblioteca = new ArrayList<>();
-
+	public static Bolsa bolsa;
 	public static void main(String[] args) {
 		
 		//Llamamos al metodo para que cargue la lista de peliculas
@@ -45,7 +45,7 @@ public class SocketServidor {
 				System.out.println("SERVIDOR: peticion numero " + ++peticion + " recibida");
 				//Abrimos un hilo nuevo y liberamos el hilo principal para que pueda
 				//recibir peticiones de otros clientes
-				new HiloBibliotecaVirtual(socketAlCliente, biblioteca);
+				new HiloBibliotecaVirtual(socketAlCliente, biblioteca, bolsa);
 			}			
 		} catch (IOException e) {
 			System.err.println("SERVIDOR: Error de entrada/salida");
