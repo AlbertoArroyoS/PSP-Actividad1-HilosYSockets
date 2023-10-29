@@ -7,7 +7,7 @@ import javabean.Pelicula;
 /**
  * Clase que representa una estructura de datos que almacena objetos Pelicula
  * con una capacidad maxima de 1 elemento y sigue el principio FIFO (First In First Out).
- * El objetivo de esta clase es crear una cola intermedia de la lista de peliculas, en la cual
+ * En esta clase se creara una cola intermedia de la lista de peliculas, en la cual
  * solo puede haber un objeto pelicula y los demas hilos tendran que esperar a que el objeto pelicula salga
  * antes de que otro hilo pueda meter su pelicula en la bolsa. El objetivo de esta clase es practicar
  * con las colas, el wait y el notify de los hilos sincronizados.
