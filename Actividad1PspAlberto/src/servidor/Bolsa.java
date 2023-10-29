@@ -50,7 +50,7 @@ public class Bolsa {
 	     * Este metodo agrega una pelicula a la bolsa. Si la bolsa esta llena, el hilo se bloquea
 	     * y espera a que otro hilo saque una película antes de continuar.
 	     *
-	     * @param representa pelicula la pelicula que se va a agregar a la bolsa.
+	     * @param pelicula representa pelicula la pelicula que se va a agregar a la bolsa.
 	     */
 		public synchronized void addPeliculaBolsa(Pelicula pelicula){
 			//Si la bolsa esta llena no debemos introducir ninguna pelicula mas
