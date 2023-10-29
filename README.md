@@ -50,6 +50,7 @@ SocketServidor
 ![Imagen](imgReadme/i012.png)
 
 **Requerimiento 2**
+
 Buscar películas por director, nos deberá devolver si hay varias películas por director
 
 ![Imagen](imgReadme/i013.png)
@@ -58,7 +59,8 @@ SocketServidor
 
 ![Imagen](imgReadme/i014.png)
 
-#Requerimiento 3
+**Requerimiento 3**
+
 Añado la opción de añadir películas, si un hilo ha empezado a añadir una película, ningún otro hilo puede añadir ninguna película hasta que el primero haya terminado. 
 
 Cliente 1
