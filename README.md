@@ -58,7 +58,7 @@ SocketServidor
 
 ![Imagen](imgReadme/i014.png)
 
-# <a name="_toc149131319"></a>Requerimiento 3
+#Requerimiento 3
 Añado la opción de añadir películas, si un hilo ha empezado a añadir una película, ningún otro hilo puede añadir ninguna película hasta que el primero haya terminado. 
 
 Cliente 1
