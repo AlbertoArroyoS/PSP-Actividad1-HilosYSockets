@@ -106,7 +106,8 @@ public class OpcionesHilo {
 		 	System.out.println("Esperando titulo de la pelicula del cliente");
 		 	//salida.println("Pelicula:");
 		 	String titulo = entradaBuffer.readLine();
-	        Pelicula pelicula = buscarPorTitulo(titulo, peliculaLista);
+		 	//trim() es un metodo que quita los espacios en blanco del principio
+	        Pelicula pelicula = buscarPorTitulo(titulo.trim(), peliculaLista);
 	        salida.println(pelicula);
 	        salida.println("FIN_BUSQUEDA");
 	 }
@@ -124,7 +125,8 @@ public class OpcionesHilo {
 		 	System.out.println("Esperando nombre del director de la pelicula del cliente");
 		 	//salida.println("Pelicula:");
 	        String director = entradaBuffer.readLine();
-	        List<Pelicula> peliculas = buscarPeliculasPorDirector(director, peliculaLista);
+	      //trim() es un metodo que quita los espacios en blanco del principio
+	        List<Pelicula> peliculas = buscarPeliculasPorDirector(director.trim(), peliculaLista);
 
 	        if (peliculas.isEmpty()) {
 	            salida.println("No se encontraron películas para el director: " + director);
@@ -164,7 +166,7 @@ public class OpcionesHilo {
 	            salida.println("Precio de la película:");
 	            System.out.println("Esperando precio de la pelicula "+ hiloNombre);
 	            double precio = Double.parseDouble(entradaBuffer.readLine());
-	            Pelicula pelicula = new Pelicula(id, title, director, precio);
+	            Pelicula pelicula = new Pelicula(id, title.trim(), director.trim(), precio);
 	            
 	            //Comprobamos si ya existe una pelicula con ese id en la lista
 	            if (peliculaLista.contains(pelicula)) {
