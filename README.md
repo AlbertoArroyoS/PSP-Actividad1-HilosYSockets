@@ -108,3 +108,55 @@ Si se introduce una cadena en el ID o el precio dará error y lo pedirá de nuev
 Se ha metido correctamente
 
 ![Imagen](imgReadme/i025.png)
+
+Utilizo el metodo trim () para quitar los espacios si busco el nombre de la pelicula y el director
+
+![Imagen](imgReadme/i027.png)
+
+Al añadir películas tambien utilizo trim() por si se añade espacio en el nombre o el titulo al principio o al final
+
+![Imagen](imgReadme/i028.png)
+
+![Imagen](imgReadme/i029.png)
+
+**Meter varias películas desde 3 hilos distintos**
+
+![Imagen](imgReadme/i030.png)
+
+![Imagen](imgReadme/i031.png)
+
+Cliente\_1 que empieza a introducir la película
+
+
+Mientras Cliente\_2 las ha rellenado todas y se queda en espera
+
+![Imagen](imgReadme/i032.png)
+
+Cliente\_3 rellena otra tambien y se queda en espera
+
+![Imagen](imgReadme/i033.png)
+
+Mientras el servidor:
+
+![Imagen](imgReadme/i034.png)
+
+El cliente 1 termina de rellenar los datos de la película.
+
+![Imagen](imgReadme/i035.png)
+
+Cliente\_2
+
+![Imagen](imgReadme/i036.png)
+
+Cliente\_3
+
+![Imagen](imgReadme/i037.png)
+
+Servidor
+
+![Imagen](imgReadme/i038.png)
+
+Compruebo si las películas están en la lista a pesar de haberse introducido desde hilos distintos
+
+![Imagen](imgReadme/i039.png)
+
