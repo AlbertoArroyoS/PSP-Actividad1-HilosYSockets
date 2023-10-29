@@ -9,6 +9,7 @@ Actividad Realizada por:
 **Requerimiento 1**
 
 Listado de películas precargadas
+
 ![Imagen](imgReadme/i000.png)
 
 **SockerServidor**
