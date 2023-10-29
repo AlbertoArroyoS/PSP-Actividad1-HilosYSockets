@@ -10,7 +10,7 @@ import javabean.Pelicula;
  * El objetivo de esta clase es crear una cola intermedia de la lista de peliculas, en la cual
  * solo puede haber un objeto pelicula y los demas hilos tendran que esperar a que el objeto pelicula salga
  * antes de que otro hilo pueda meter su pelicula en la bolsa. El objetivo de esta clase es practicar
- * con las colas, el wait y el notify de los hilos.
+ * con las colas, el wait y el notify de los hilos sincronizados.
  * 
  * @author Alberto Arroyo Santofimia
  * 
@@ -48,7 +48,7 @@ public class Bolsa {
 		}	
 		/**
 	     * Este metodo agrega una pelicula a la bolsa. Si la bolsa esta llena, el hilo se bloquea
-	     * y espera a que otro hilo saque una película antes de continuar.
+	     * y espera a que otro hilo saque una pelicula antes de continuar.
 	     *
 	     * @param pelicula representa pelicula la pelicula que se va a agregar a la bolsa.
 	     */

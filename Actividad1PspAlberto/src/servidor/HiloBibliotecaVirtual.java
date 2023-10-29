@@ -42,7 +42,7 @@ public class HiloBibliotecaVirtual implements Runnable{
 
 	/**
 	 * Metodo que se ejecuta en un hilo de cliente para procesar las solicitudes entrantes
-	 * y la comunicación con un cliente de la biblioteca virtual.
+	 * y la comunicacion con un cliente de la biblioteca virtual.
 	 * Realiza las siguientes operaciones:
 	 * 1. Establece la comunicacion con el cliente.
 	 * 2. Procesa las solicitudes del cliente hasta que se recibe el comando de salida.

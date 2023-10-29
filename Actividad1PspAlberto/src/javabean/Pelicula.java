@@ -22,10 +22,10 @@ public class Pelicula {
     /**
      * Crea un objeto Pelicula con los valores iniciales proporcionados.
      *
-     * @param id       El ID de la película.
-     * @param titulo   El título de la película.
-     * @param director El nombre del director de la película.
-     * @param precio   El precio de la película.
+     * @param id representa el ID de la pelicula.
+     * @param titulo representa el titulo de la pelicula.
+     * @param director representa el nombre del director de la pelicula.
+     * @param precio representa el precio de la pelicula.
      */
     
     public Pelicula(int id, String titulo, String director, double precio) {

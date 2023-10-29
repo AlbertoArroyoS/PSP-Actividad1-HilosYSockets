@@ -42,7 +42,7 @@ public class OpcionesHilo {
 	//Metodo para encontrar la pelicula por titulo
 	
 	/**
-     * Metodo para buscar una pelicula por su título en una lista de peliculas.
+     * Metodo para buscar una pelicula por su titulo en una lista de peliculas.
      *
      * @param titulo representa el titulo de la pelicula a buscar.
      * @param peliculaLista representa la lista de peliculas en la que se realizara la busqueda.
@@ -63,7 +63,7 @@ public class OpcionesHilo {
      * Metodo para buscar peliculas por el nombre del director en una lista de peliculas.
      *
      * @param director representa el nombre del director de las peliculas a buscar.
-     * @param peliculaLista representa la lista de peliculas en la que se realizara la búsqueda.
+     * @param peliculaLista representa la lista de peliculas en la que se realizara la busqueda.
      * @return una lista de peliculas que tienen al director especificado o No se encontraron peliculas para el director.
      */
 	public List<Pelicula> buscarPeliculasPorDirector(String director, List<Pelicula> peliculaLista) {
