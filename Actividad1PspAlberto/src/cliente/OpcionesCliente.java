@@ -9,7 +9,7 @@ import java.util.Scanner;
  * 
  * @author Alberto Arroyo Santofimia
  * 
- * @version v2.0
+ * @version v2.1
  */
 public class OpcionesCliente {
 	
