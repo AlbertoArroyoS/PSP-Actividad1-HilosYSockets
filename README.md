@@ -143,7 +143,7 @@ Cliente\_3 rellena otra tambien y se queda en espera
 
 Mientras el servidor:
 
-![Imagen](imgReadme/i034.png)
+![Imagen](imgReadme/i042.png)
 
 El cliente 1 termina de rellenar los datos de la película.
 
@@ -159,7 +159,7 @@ Cliente\_3
 
 Servidor
 
-![Imagen](imgReadme/i038.png)
+![Imagen](imgReadme/i043.png)
 
 Compruebo si las películas están en la lista a pesar de haberse introducido desde hilos distintos
 
