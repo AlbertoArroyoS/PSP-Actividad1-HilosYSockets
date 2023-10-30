@@ -10,7 +10,7 @@ import javabean.Pelicula;
  * En esta clase se creara una cola, en la cual solo puede haber un objeto pelicula.
  * Los demas hilos tendran que esperar (wait) a que el objeto pelicula salga para introducirse en la
  * lista de peliculas y lo notifique (notify)al resto de hilos para que puedan agregar su pelicula a
- * la cola. De esta forma solo pueden añadir una película cada hilo a la vez.
+ * la cola. De esta forma solo pueden añadir una pelicula cada hilo a la vez.
  * 
  * @author Alberto Arroyo Santofimia
  * 
