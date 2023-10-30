@@ -76,7 +76,7 @@ public class HiloBibliotecaVirtual implements Runnable{
 			while (continuar) {		
 				//trim() es un metodo que quita los espacios en blanco del principio
 				//y del final
-				System.out.println("Opcion introducida en el menu");
+				System.out.println("Esperando opcion del menú: " +hiloNombre);
 				texto = entradaBuffer.readLine();
 				int opcion =  Integer.parseInt(texto);
 
@@ -90,7 +90,7 @@ public class HiloBibliotecaVirtual implements Runnable{
 					opHilo.agregarPelicula(salida, entradaBuffer, peliculaLista, hiloNombre, bolsa);						    
 				}else if (opcion == 5) { // Salir de la aplicación
                     salida.println("OK");
-                    System.out.println(hilo.getName() + " ha cerrado la comunicación");
+                    System.out.println(hiloNombre + " ha cerrado la comunicación");
                     continuar = false;
                 } 
 						            				
