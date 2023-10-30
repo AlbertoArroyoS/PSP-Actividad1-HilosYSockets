@@ -21,7 +21,7 @@ public class SocketServidor {
 	
 	public static final int PUERTO = 3333;
 	private static List<Pelicula> biblioteca = new ArrayList<>();
-	public static Bolsa bolsa;
+	public static ColaBiblioteca bolsa;
 	public static void main(String[] args) {
 		
 		//Llamamos al metodo para que cargue la lista de peliculas

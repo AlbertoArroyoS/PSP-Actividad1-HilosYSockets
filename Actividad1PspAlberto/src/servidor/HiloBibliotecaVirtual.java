@@ -21,7 +21,7 @@ public class HiloBibliotecaVirtual implements Runnable{
 	private static int numCliente = 0;
 	private Socket socketAlCliente;	
 	private List<Pelicula> peliculaLista;
-	private Bolsa bolsa;
+	private ColaBiblioteca bolsa;
 	
 	 /**
      * Constructor para crear un nuevo hilo de manejo de cliente.
@@ -30,7 +30,7 @@ public class HiloBibliotecaVirtual implements Runnable{
      * @param peliculas representa la lista de peliculas.
      * @param bolsa representa la bolsa de peliculas en las que solo puede haber 1 antes de pasar a la lista.
      */
-	public HiloBibliotecaVirtual(Socket socketAlCliente, List<Pelicula> peliculas, Bolsa bolsa) {
+	public HiloBibliotecaVirtual(Socket socketAlCliente, List<Pelicula> peliculas, ColaBiblioteca bolsa) {
 		
 		numCliente++;
 		hilo = new Thread(this, "Cliente_"+numCliente);
@@ -54,7 +54,7 @@ public class HiloBibliotecaVirtual implements Runnable{
 	@Override
 	public void run() {
 		String hiloNombre = hilo.getName();
-		bolsa = new Bolsa();
+		bolsa = new ColaBiblioteca();
 		//Creo la instancia de la clase OpcionesHilo para poder llamar a los metodos
 		OpcionesHilo opHilo = new OpcionesHilo();
 		System.out.println("Estableciendo comunicacion con " + hiloNombre);

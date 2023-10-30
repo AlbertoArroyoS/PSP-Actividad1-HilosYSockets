@@ -5,18 +5,18 @@ import java.util.Queue;
 
 import javabean.Pelicula;
 /**
- * Clase que representa una estructura de datos que almacena objetos Pelicula
+ * Clase que representa una cola. Es una estructura de datos que almacena objetos Pelicula
  * con una capacidad maxima de 1 elemento y sigue el principio FIFO (First In First Out).
- * En esta clase se creara una cola intermedia de la lista de peliculas, en la cual
- * solo puede haber un objeto pelicula y los demas hilos tendran que esperar a que el objeto pelicula salga
- * antes de que otro hilo pueda meter su pelicula en la bolsa. El objetivo de esta clase es practicar
- * con las colas, el wait y el notify de los hilos sincronizados.
+ * En esta clase se creara una cola, en la cual solo puede haber un objeto pelicula.
+ * Los demas hilos tendran que esperar (wait) a que el objeto pelicula salga para introducirse en la
+ * lista de peliculas y lo notifique (notify)al resto de hilos para que puedan agregar su pelicula a
+ * la cola. De esta forma solo pueden añadir una película cada hilo a la vez.
  * 
  * @author Alberto Arroyo Santofimia
  * 
  * @version 2.1
  */
-public class Bolsa {
+public class ColaBiblioteca {
 		//Numero maximo objetos Pelicula que tiene la bolsa
 		public final static int MAX_ELEMENTOS = 1;
 		
