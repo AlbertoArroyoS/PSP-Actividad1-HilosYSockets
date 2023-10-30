@@ -167,8 +167,8 @@ Compruebo si las películas están en la lista a pesar de haberse introducido de
 
 Opción 5 salir del programa en los 3 Clientes
 
-![Imagen](imgReadme/i040.png)
+![Imagen](imgReadme/i041.png)
 
 Servidor
 
-![Imagen](imgReadme/i041.png)
+![Imagen](imgReadme/i040.png)
